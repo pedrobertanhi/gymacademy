@@ -36,7 +36,7 @@ O Back-end foi estruturado utilizando o padrão de camadas (Layered Architecture
    1. git init
    2. git add .
    3. git commit -m "nome do commmit"
-   4. git push -origin main (ou branch responsável)
+   4. git push u- origin main (ou branch responsável)
 
 1. Trocar de branch e conectar ao repositorio: 
    ```bash
