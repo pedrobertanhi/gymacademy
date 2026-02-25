@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia - Portal do Aluno</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <h1>🏋️‍♂️ Sistema de Acesso Fit</h1>
+        <p>Portal de Cadastros e Solicitações</p>
+    </header>
+
+    <main class="conteudo-principal">
+        
+        <div id="area-visitante" class="agrupamento-cartoes">
+            
+            <section class="cartao" id="cartao-login">
+                <h2>🔐 Acesso do Aluno</h2>
+                <form id="formulario-login">
+                    <div class="grupo-input">
+                        <label for="email-login">E-mail:</label>
+                        <input type="email" id="email-login" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label for="senha-login">Senha:</label>
+                        <input type="password" id="senha-login" required>
+                    </div>
+                    <button type="submit" class="botao-secundario">Entrar no Sistema</button>
+                </form>
+
+                <div class="links-auxiliares">
+                    <a href="#" id="link-esqueceu-senha">Esqueceu a senha?</a>
+                    <span> | </span>
+                    <a href="#" id="link-ir-cadastro">Realizar cadastro</a>
+                </div>
+
+                <div id="mensagem-login" class="mensagem-oculta"></div>
+            </section>
+
+            <section class="cartao escondido" id="cartao-cadastro">
+                <h2>📝 Novo Cadastro</h2>
+                <form id="formulario-aluno">
+                    <div class="grupo-input">
+                        <label for="nome-aluno">Nome Completo:</label>
+                        <input type="text" id="nome-aluno" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label for="email-aluno">E-mail:</label>
+                        <input type="email" id="email-aluno" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label for="senha-aluno">Senha:</label>
+                        <input type="password" id="senha-aluno" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label for="data-fim-plano">Vencimento do Plano:</label>
+                        <input type="date" id="data-fim-plano" required>
+                    </div>
+                    <button type="submit" class="botao-secundario">Cadastrar Aluno</button>
+                </form>
+
+                <div class="links-auxiliares" style="margin-top: 15px;">
+                    <a href="#" id="link-voltar-login">⬅ Voltar para o Login</a>
+                </div>
+
+                <div id="mensagem-cadastro" class="mensagem-oculta"></div>
+            </section>
+
+        </div>
+
+        <div id="area-logada" class="escondido">
+            <section class="cartao" id="cartao-destaque">
+                <h2>🚪 Bem-vindo!</h2>
+                <p id="texto-usuario-logado">Você está logado como: </p>
+                
+                <button id="botao-ir-catraca" class="botao-primario" style="margin-bottom: 15px;">Ir para a Catraca ➡️</button>
+                
+                <button id="botao-sair" class="botao-secundario" style="background-color: #ff4444;">Sair da Conta</button>
+            </section>
+        </div>
+
+    </main>
+
+    <script src="./JS/app.js"></script>
+</body>
+</html>

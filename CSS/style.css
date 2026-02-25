@@ -1,0 +1,217 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cabecalho h1 {
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+/* Área Central */
+.conteudo-principal {
+    display: flex;
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1000px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Controle de Telas (Mágica do JS) */
+.escondido {
+    display: none !important;
+}
+
+.agrupamento-cartoes {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Cartões */
+.cartao {
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    border-top: 4px solid #00ff88;
+}
+
+#cartao-destaque {
+    border-top: 4px solid #3b82f6;
+    text-align: center;
+}
+
+.cartao h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.cartao p {
+    color: #aaaaaa;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Inputs e Labels */
+.grupo-input {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.grupo-input input:focus {
+    outline: none;
+    border-color: #00ff88;
+}
+
+/* Botões */
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-primario {
+    background-color: #00ff88;
+    color: #121212;
+}
+
+.botao-primario:hover {
+    background-color: #00cc6a;
+}
+
+.botao-secundario {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+.botao-secundario:hover {
+    background-color: #2563eb;
+}
+
+/* Estilo para os Links Auxiliares (Esqueceu senha, Cadastro) */
+.links-auxiliares {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.links-auxiliares a {
+    color: #00ff88;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links-auxiliares a:hover {
+    text-decoration: underline;
+    color: #00cc6a;
+}
+
+.links-auxiliares span {
+    color: #555555;
+    margin: 0 8px;
+}
+
+/* Mensagens de Retorno */
+.mensagem-oculta {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mensagem-sucesso {
+    display: block;
+    background-color: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+}
+
+.mensagem-erro {
+    display: block;
+    background-color: rgba(255, 68, 68, 0.2);
+    color: #ff4444;
+    border: 1px solid #ff4444;
+}
+
+/* --- ESTILOS EXCLUSIVOS DA TELA DA CATRACA --- */
+.tela-catraca {
+    justify-content: center;
+    transition: background-color 0.5s ease;
+}
+
+.visor-centro {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.visor-centro h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.fundo-sucesso { background-color: #008040; }
+.fundo-erro { background-color: #800000; }
+.fundo-alerta { background-color: #b08d00; }
+
+.botao-voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 6px;
+}
