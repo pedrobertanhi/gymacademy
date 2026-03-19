@@ -1,0 +1,174 @@
+/* ================================================================
+   AUTH PAGE — Split layout
+   ================================================================ */
+
+.page-auth {
+  display: flex;
+  min-height: 100vh;
+}
+
+.auth-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Lado esquerdo: branding ── */
+.auth-brand {
+  background: linear-gradient(160deg, #0f1f14 0%, #0d0d0d 60%, #0a1a0a 100%);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* grade decorativa de fundo */
+.auth-brand::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(57,255,143,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,255,143,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.brand-content { position: relative; z-index: 1; }
+
+.brand-logo {
+  font-family: var(--font-display);
+  font-size: 56px;
+  color: var(--green);
+  background: var(--green-glow);
+  border: 2px solid var(--green-dim);
+  width: 88px; height: 88px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-glow-green);
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 72px;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.brand-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: .04em;
+  margin-bottom: 48px;
+}
+
+.brand-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.stat { display: flex; flex-direction: column; gap: 4px; }
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--green);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ── Lado direito: formulário ── */
+.auth-form-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  background: var(--bg-surface);
+  overflow-y: auto;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--text-primary);
+}
+
+.form-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: -12px;
+}
+
+/* Planos */
+.plano-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.plano-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color .2s, background .2s;
+  position: relative;
+}
+
+.plano-card input[type="radio"] {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+
+.plano-card:hover { border-color: var(--green-dim); background: var(--green-glow); }
+
+.plano-card:has(input:checked) {
+  border-color: var(--green);
+  background: var(--green-glow);
+  box-shadow: 0 0 0 1px var(--green);
+}
+
+.plano-nome  { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.plano-preco { font-size: 15px; font-weight: 700; color: var(--green); }
+.plano-dur   { font-size: 11px; color: var(--text-muted); }
+
+.switch-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ── Responsivo ── */
+@media (max-width: 860px) {
+  .auth-split { grid-template-columns: 1fr; }
+  .auth-brand { display: none; }
+  .auth-form-area { padding: 32px 20px; }
+}
+
+@media (max-width: 480px) {
+  .plano-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymAcademy — Catraca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/catraca.css">
+</head>
+<body class="page-catraca" id="corpo">
+
+  <!-- Cabeçalho -->
+  <header class="catraca-header">
+    <span class="catraca-logo">🏋️ GymAcademy</span>
+    <span class="catraca-clock" id="relogio">—</span>
+  </header>
+
+  <!-- Visor central -->
+  <div class="catraca-visor" id="visor">
+
+    <!-- Estado: carregando -->
+    <div id="estado-loading">
+      <div class="catraca-spinner"></div>
+      <p class="catraca-detalhe">Verificando acesso...</p>
+    </div>
+
+    <!-- Estado: resultado -->
+    <div id="estado-resultado" class="hidden">
+      <div class="catraca-icon"    id="res-icon">—</div>
+      <div class="catraca-status"  id="res-status">—</div>
+      <div class="catraca-aluno"   id="res-aluno"></div>
+      <div class="catraca-detalhe" id="res-detalhe">—</div>
+      <div class="catraca-data"    id="res-data"></div>
+      <div class="catraca-progress"><div class="catraca-progress-bar"></div></div>
+      <a href="dashboard.html" class="catraca-back">⬅ Voltar ao Painel</a>
+    </div>
+
+  </div>
+
+  <script src="../js/utils/api.js"></script>
+  <script src="../js/utils/storage.js"></script>
+  <script src="../js/modules/catraca.js"></script>
+</body>
+</html>

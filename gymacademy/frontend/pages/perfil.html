@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymAcademy — Meu Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="page-app" style="grid-template-columns:1fr">
+
+  <!-- TOPBAR -->
+  <header class="topbar" style="grid-column:1">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-family:var(--font-display);font-size:22px">🏋️ GymAcademy</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="catraca.html" id="link-catraca" class="btn-secondary">🚪 Ir para Catraca</a>
+      <button class="btn-danger" id="btn-logout">Sair</button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="content" style="grid-column:1;max-width:860px;margin:0 auto;width:100%">
+
+    <!-- Cabeçalho do perfil -->
+    <div class="perfil-header">
+      <div class="perfil-avatar" id="perfil-avatar">?</div>
+      <div class="perfil-info">
+        <h2 id="perfil-nome">Carregando...</h2>
+        <p id="perfil-email">—</p>
+      </div>
+    </div>
+
+    <!-- Status do plano -->
+    <div class="plano-status-card" id="plano-card">
+      <div class="plano-status-icon" id="plano-icon">📋</div>
+      <div class="plano-status-info">
+        <h3 id="plano-nome">—</h3>
+        <p id="plano-venc">—</p>
+      </div>
+      <div id="plano-badge" style="margin-left:auto"></div>
+    </div>
+
+    <!-- Alertas de plano vencendo -->
+    <div class="alert-banner hidden" id="alerta-vencendo">
+      ⚠️ Seu plano vence em breve! Procure a recepção para renovar.
+    </div>
+    <div class="alert-banner hidden" id="alerta-vencido" style="background:var(--red-glow);border-color:var(--red-dim);color:var(--red)">
+      ❌ Seu plano está vencido! Você não poderá acessar a academia. Procure a recepção.
+    </div>
+
+    <!-- Formulários -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+      <!-- Alterar dados -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">Meus Dados</div>
+        <form id="form-perfil" style="display:flex;flex-direction:column;gap:14px">
+          <div class="field-group">
+            <label>Nome</label>
+            <input type="text" id="perf-nome" required>
+          </div>
+          <div class="field-group">
+            <label>Telefone</label>
+            <input type="tel" id="perf-telefone">
+          </div>
+          <div id="msg-perfil" class="msg-box hidden"></div>
+          <button type="submit" class="btn-primary">
+            <span class="btn-text">Salvar Alterações</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Alterar senha -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">Alterar Senha</div>
+        <form id="form-senha" style="display:flex;flex-direction:column;gap:14px">
+          <div class="field-group">
+            <label>Senha Atual</label>
+            <input type="password" id="senha-atual" placeholder="••••••">
+          </div>
+          <div class="field-group">
+            <label>Nova Senha <small>(mín. 6 caracteres)</small></label>
+            <input type="password" id="senha-nova" placeholder="••••••">
+          </div>
+          <div id="msg-senha" class="msg-box hidden"></div>
+          <button type="submit" class="btn-primary">
+            <span class="btn-text">Alterar Senha</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Histórico de acessos -->
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="padding:20px 20px 0">
+        <div class="section-title">Meu Histórico de Acessos</div>
+        <div class="section-sub">Suas últimas entradas na academia</div>
+      </div>
+      <div class="table-wrap" style="padding:12px 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Data / Hora</th>
+              <th>Status</th>
+              <th>Observação</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-historico">
+            <tr><td colspan="3" style="text-align:center;padding:24px">
+              <div class="spinner" style="margin:0 auto"></div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../js/utils/api.js"></script>
+  <script src="../js/utils/storage.js"></script>
+  <script src="../js/modules/perfil.js"></script>
+</body>
+</html>

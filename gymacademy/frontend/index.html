@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymAcademy — Acesso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="page-auth">
+
+  <div class="auth-split">
+
+    <!-- LADO ESQUERDO: BRANDING -->
+    <div class="auth-brand">
+      <div class="brand-content">
+        <div class="brand-logo">GA</div>
+        <h1 class="brand-title">GYM<br>ACADEMY</h1>
+        <p class="brand-sub">Sistema de Controle de Acesso</p>
+        <div class="brand-stats">
+          <div class="stat"><span class="stat-num" id="stat-alunos">—</span><span class="stat-label">Alunos</span></div>
+          <div class="stat"><span class="stat-num" id="stat-acessos">—</span><span class="stat-label">Acessos Hoje</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LADO DIREITO: FORMULÁRIOS -->
+    <div class="auth-form-area">
+
+      <!-- LOGIN -->
+      <div class="auth-card" id="card-login">
+        <h2 class="form-title">Bem-vindo de volta</h2>
+        <p class="form-sub">Entre com suas credenciais para acessar</p>
+
+        <form id="form-login" novalidate>
+          <div class="field-group">
+            <label>E-mail</label>
+            <input type="email" id="login-email" placeholder="seu@email.com" required>
+          </div>
+          <div class="field-group">
+            <label>Senha</label>
+            <div class="input-pwd">
+              <input type="password" id="login-senha" placeholder="••••••••" required>
+              <button type="button" class="toggle-pwd" tabindex="-1">👁</button>
+            </div>
+          </div>
+          <div id="msg-login" class="msg-box hidden"></div>
+          <button type="submit" class="btn-primary" id="btn-login">
+            <span class="btn-text">Entrar</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </form>
+
+        <p class="switch-link">Não tem conta? <a href="#" id="ir-cadastro">Cadastre-se</a></p>
+      </div>
+
+      <!-- CADASTRO -->
+      <div class="auth-card hidden" id="card-cadastro">
+        <h2 class="form-title">Criar conta</h2>
+        <p class="form-sub">Preencha seus dados para se cadastrar</p>
+
+        <form id="form-cadastro" novalidate>
+          <div class="field-group">
+            <label>Nome Completo</label>
+            <input type="text" id="cad-nome" placeholder="João da Silva" required>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>E-mail</label>
+              <input type="email" id="cad-email" placeholder="seu@email.com" required>
+            </div>
+            <div class="field-group">
+              <label>Telefone</label>
+              <input type="tel" id="cad-telefone" placeholder="(11) 99999-9999">
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Senha <small>(mín. 6 caracteres)</small></label>
+            <input type="password" id="cad-senha" placeholder="••••••••" required>
+          </div>
+          <div class="field-group">
+            <label>Plano</label>
+            <div class="plano-grid" id="plano-grid">
+              <label class="plano-card" data-plano="MENSAL">
+                <input type="radio" name="plano" value="MENSAL">
+                <span class="plano-nome">Mensal</span>
+                <span class="plano-preco">R$ 99,90</span>
+                <span class="plano-dur">30 dias</span>
+              </label>
+              <label class="plano-card" data-plano="TRIMESTRAL">
+                <input type="radio" name="plano" value="TRIMESTRAL">
+                <span class="plano-nome">Trimestral</span>
+                <span class="plano-preco">R$ 259,90</span>
+                <span class="plano-dur">90 dias</span>
+              </label>
+              <label class="plano-card" data-plano="SEMESTRAL">
+                <input type="radio" name="plano" value="SEMESTRAL">
+                <span class="plano-nome">Semestral</span>
+                <span class="plano-preco">R$ 479,90</span>
+                <span class="plano-dur">180 dias</span>
+              </label>
+              <label class="plano-card" data-plano="ANUAL">
+                <input type="radio" name="plano" value="ANUAL">
+                <span class="plano-nome">Anual</span>
+                <span class="plano-preco">R$ 899,90</span>
+                <span class="plano-dur">365 dias</span>
+              </label>
+            </div>
+          </div>
+          <div id="msg-cadastro" class="msg-box hidden"></div>
+          <button type="submit" class="btn-primary" id="btn-cadastro">
+            <span class="btn-text">Criar Conta</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </form>
+
+        <p class="switch-link">Já tem conta? <a href="#" id="ir-login">Entrar</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/utils/api.js"></script>
+  <script src="js/utils/storage.js"></script>
+  <script src="js/modules/auth.js"></script>
+</body>
+</html>

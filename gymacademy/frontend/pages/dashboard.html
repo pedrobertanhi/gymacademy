@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymAcademy — Painel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="page-app">
+
+  <!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-mark">GA</div>
+      <span class="sidebar-logo-text">GymAcademy</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Principal</span>
+      <button class="nav-item active" data-page="home">
+        <span class="nav-icon">📊</span> Dashboard
+      </button>
+      <button class="nav-item" data-page="alunos">
+        <span class="nav-icon">👥</span> Alunos
+      </button>
+      <button class="nav-item" data-page="acessos">
+        <span class="nav-icon">🚪</span> Acessos
+      </button>
+
+      <span class="nav-section-label">Operações</span>
+      <button class="nav-item" data-page="catraca-link" id="nav-catraca">
+        <span class="nav-icon">🏃</span> Ir para Catraca
+      </button>
+
+      <span class="nav-section-label">Conta</span>
+      <button class="nav-item" data-page="perfil">
+        <span class="nav-icon">👤</span> Meu Perfil
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user" id="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">?</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-nome">—</div>
+          <div class="user-role" id="sidebar-role">—</div>
+        </div>
+        <button class="btn-logout" id="btn-logout" title="Sair">⏻</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════ TOPBAR ══════════════════════ -->
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="hamburger" id="hamburger">☰</button>
+      <h1 class="topbar-title" id="topbar-title">Dashboard</h1>
+    </div>
+    <div class="topbar-actions">
+      <div class="search-box" id="search-box" style="display:none">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Buscar aluno...">
+      </div>
+      <button class="btn-secondary" id="btn-novo-aluno" style="display:none">+ Novo Aluno</button>
+    </div>
+  </header>
+
+  <!-- ══════════════════════ CONTENT ══════════════════════ -->
+  <main class="content">
+
+    <!-- ── HOME / DASHBOARD ── -->
+    <section class="page active" id="page-home">
+
+      <div id="alert-vencendo" class="alert-banner hidden">
+        ⚠️ <strong id="alert-vencendo-num">0</strong> alunos com plano vencendo nos próximos 7 dias.
+        <button class="btn-icon" style="margin-left:auto" onclick="mostrarVencendo()">Ver</button>
+      </div>
+
+      <div class="metrics-grid" id="metrics-grid">
+        <!-- preenchido via JS -->
+        <div class="metric-card green"><div class="spinner"></div></div>
+        <div class="metric-card red"><div class="spinner"></div></div>
+        <div class="metric-card blue"><div class="spinner"></div></div>
+        <div class="metric-card yellow"><div class="spinner"></div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" id="home-bottom">
+
+        <!-- Feed de acessos -->
+        <div class="card">
+          <div class="section-header" style="margin-bottom:16px">
+            <div>
+              <div class="section-title">Acessos Recentes</div>
+              <div class="section-sub">Últimas entradas registradas</div>
+            </div>
+            <button class="btn-icon" onclick="carregarFeed()">↻</button>
+          </div>
+          <div class="feed-list" id="feed-acessos">
+            <div class="spinner" style="margin:20px auto"></div>
+          </div>
+        </div>
+
+        <!-- Planos vencendo -->
+        <div class="card">
+          <div class="section-header" style="margin-bottom:16px">
+            <div>
+              <div class="section-title">Atenção Necessária</div>
+              <div class="section-sub">Planos vencendo em até 7 dias</div>
+            </div>
+          </div>
+          <div id="lista-vencendo">
+            <div class="spinner" style="margin:20px auto"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ALUNOS ── -->
+    <section class="page" id="page-alunos">
+      <div class="alunos-header">
+        <div>
+          <div class="section-title">Gerenciar Alunos</div>
+          <div class="section-sub" id="alunos-count">Carregando...</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table id="tabela-alunos">
+            <thead>
+              <tr>
+                <th>Aluno</th>
+                <th>Plano</th>
+                <th>Vencimento</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-alunos">
+              <tr><td colspan="5" style="text-align:center;padding:32px">
+                <div class="spinner" style="margin:0 auto"></div>
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="paginacao-alunos"></div>
+      </div>
+    </section>
+
+    <!-- ── ACESSOS ── -->
+    <section class="page" id="page-acessos">
+      <div>
+        <div class="section-title">Histórico de Acessos</div>
+        <div class="section-sub">Todos os registros de entrada/bloqueio</div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Aluno</th>
+                <th>Data / Hora</th>
+                <th>Status</th>
+                <th>Obs.</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-acessos">
+              <tr><td colspan="4" style="text-align:center;padding:32px">
+                <div class="spinner" style="margin:0 auto"></div>
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PERFIL ── -->
+    <section class="page" id="page-perfil">
+      <div class="perfil-header" id="perfil-header">
+        <div class="perfil-avatar" id="perfil-avatar">?</div>
+        <div class="perfil-info">
+          <h2 id="perfil-nome">—</h2>
+          <p id="perfil-email">—</p>
+          <p id="perfil-role" style="margin-top:4px"></p>
+        </div>
+      </div>
+
+      <div class="plano-status-card" id="perfil-plano-card">
+        <div class="plano-status-icon" id="perfil-plano-icon">📋</div>
+        <div class="plano-status-info">
+          <h3 id="perfil-plano-nome">—</h3>
+          <p id="perfil-plano-venc">—</p>
+        </div>
+        <div id="perfil-plano-badge" style="margin-left:auto"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <!-- Alterar dados -->
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px">Alterar Dados</div>
+          <form id="form-perfil" style="display:flex;flex-direction:column;gap:14px">
+            <div class="field-group">
+              <label>Nome</label>
+              <input type="text" id="perf-nome">
+            </div>
+            <div class="field-group">
+              <label>Telefone</label>
+              <input type="tel" id="perf-telefone">
+            </div>
+            <div id="msg-perfil" class="msg-box hidden"></div>
+            <button type="submit" class="btn-primary">
+              <span class="btn-text">Salvar</span>
+              <span class="btn-loader hidden">⏳</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Alterar senha -->
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px">Alterar Senha</div>
+          <form id="form-senha" style="display:flex;flex-direction:column;gap:14px">
+            <div class="field-group">
+              <label>Senha Atual</label>
+              <input type="password" id="senha-atual" placeholder="••••••">
+            </div>
+            <div class="field-group">
+              <label>Nova Senha</label>
+              <input type="password" id="senha-nova" placeholder="••••••">
+            </div>
+            <div id="msg-senha" class="msg-box hidden"></div>
+            <button type="submit" class="btn-primary">
+              <span class="btn-text">Alterar Senha</span>
+              <span class="btn-loader hidden">⏳</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════ MODAL: NOVO / EDITAR ALUNO ══════════════════════ -->
+  <div class="modal-overlay" id="modal-aluno">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-aluno-titulo">Novo Aluno</h2>
+        <button class="modal-close" onclick="fecharModal('modal-aluno')">✕</button>
+      </div>
+      <div class="modal-form" id="modal-aluno-form">
+        <div class="field-row">
+          <div class="field-group">
+            <label>Nome *</label>
+            <input type="text" id="m-nome" required>
+          </div>
+          <div class="field-group">
+            <label>Telefone</label>
+            <input type="tel" id="m-telefone">
+          </div>
+        </div>
+        <div class="field-group">
+          <label>E-mail *</label>
+          <input type="email" id="m-email" required>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Senha *</label>
+            <input type="password" id="m-senha" placeholder="mín. 6 caracteres">
+          </div>
+          <div class="field-group">
+            <label>CPF</label>
+            <input type="text" id="m-cpf" placeholder="somente números" maxlength="11">
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Plano *</label>
+          <select id="m-plano">
+            <option value="MENSAL">Mensal — R$ 99,90 (30 dias)</option>
+            <option value="TRIMESTRAL">Trimestral — R$ 259,90 (90 dias)</option>
+            <option value="SEMESTRAL">Semestral — R$ 479,90 (180 dias)</option>
+            <option value="ANUAL">Anual — R$ 899,90 (365 dias)</option>
+          </select>
+        </div>
+        <div id="msg-modal-aluno" class="msg-box hidden"></div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="fecharModal('modal-aluno')">Cancelar</button>
+          <button class="btn-primary" id="btn-salvar-aluno">
+            <span class="btn-text">Cadastrar</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ MODAL: RENOVAR PLANO ══════════════════════ -->
+  <div class="modal-overlay" id="modal-renovar">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Renovar Plano</h2>
+        <button class="modal-close" onclick="fecharModal('modal-renovar')">✕</button>
+      </div>
+      <div class="modal-form">
+        <p style="color:var(--text-secondary);font-size:14px">
+          Renovando plano de: <strong id="renovar-aluno-nome">—</strong>
+        </p>
+        <div class="field-group">
+          <label>Plano</label>
+          <select id="renovar-plano">
+            <option value="MENSAL">Mensal — R$ 99,90</option>
+            <option value="TRIMESTRAL">Trimestral — R$ 259,90</option>
+            <option value="SEMESTRAL">Semestral — R$ 479,90</option>
+            <option value="ANUAL">Anual — R$ 899,90</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Valor Personalizado <small>(deixe vazio para usar o padrão)</small></label>
+          <input type="number" id="renovar-valor" placeholder="Ex: 80.00" step="0.01" min="0">
+        </div>
+        <div id="msg-renovar" class="msg-box hidden"></div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="fecharModal('modal-renovar')">Cancelar</button>
+          <button class="btn-primary" id="btn-confirmar-renovar">
+            <span class="btn-text">Confirmar Renovação</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ MODAL: CONFIRMAR AÇÃO ══════════════════════ -->
+  <div class="modal-overlay" id="modal-confirm">
+    <div class="modal" style="max-width:360px">
+      <div class="modal-header">
+        <h2 class="modal-title" id="confirm-titulo">Confirmar</h2>
+        <button class="modal-close" onclick="fecharModal('modal-confirm')">✕</button>
+      </div>
+      <p id="confirm-texto" style="color:var(--text-secondary);font-size:14px;margin-bottom:20px">Tem certeza?</p>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="fecharModal('modal-confirm')">Cancelar</button>
+        <button class="btn-danger" id="btn-confirm-ok">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/utils/api.js"></script>
+  <script src="../js/utils/storage.js"></script>
+  <script src="../js/modules/dashboard.js"></script>
+</body>
+</html>
