@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1aa3ff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.cartao-cadastro {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container-logo {
+    margin-bottom: 20px;
+    color: #1aa3ff;
+}
+
+.titulo-logo {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.subtitulo-logo {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #1a1a1a;
+    font-size: 22px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.grupo-entrada {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.grupo-entrada label {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    margin-left: 45px;
+    margin-bottom: 4px;
+}
+
+.input-com-icone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #eef4fc;
+    border-radius: 8px;
+    padding: 0 15px;
+}
+
+.icone-esquerda {
+    color: #1aa3ff;
+    font-size: 18px;
+    margin-right: 12px;
+}
+
+.input-com-icone input {
+    width: 100%;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+}
+
+.input-com-icone input::placeholder {
+    color: #333;
+    font-weight: 600;
+}
+
+.prefixo-pais {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 8px;
+}
+
+.icone-alternar-senha {
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.container-radio {
+    display: flex;
+    align-items: center;
+    background-color: #eef4fc;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+.icone-genero {
+    color: #1aa3ff;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.opcoes-radio {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.radio-item input {
+    cursor: pointer;
+    accent-color: #1aa3ff;
+}
+
+.botao-cadastrar {
+    width: 60%;
+    padding: 14px;
+    background-color: #1aa3ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 25px auto 15px;
+    display: block;
+}
+
+.botao-cadastrar:hover {
+    background-color: #108be6;
+}
+
+.link-login {
+    font-size: 12px;
+    color: #333;
+}
+
+.link-login a {
+    color: #1aa3ff;
+    text-decoration: none;
+    font-weight: bold;
+}

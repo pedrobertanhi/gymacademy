@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1aa3ff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cartao-login {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container-logo {
+    margin-bottom: 25px;
+    color: #1aa3ff;
+}
+
+.titulo-logo {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.subtitulo-logo {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.grupo-entrada {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.grupo-entrada i.icone-esquerda {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1aa3ff;
+    font-size: 14px;
+}
+
+.grupo-entrada input {
+    width: 100%;
+    padding: 15px 40px;
+    background-color: #eef4fc;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #333;
+    outline: none;
+}
+
+.grupo-entrada input::placeholder {
+    color: #888;
+    font-size: 12px;
+}
+
+.icone-alternar-senha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.link-esqueci-senha {
+    display: block;
+    color: #1aa3ff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.botao-entrar {
+    width: 100%;
+    padding: 15px;
+    background-color: #1aa3ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.botao-entrar:hover {
+    background-color: #108be6;
+}
+
+.link-cadastro {
+    font-size: 12px;
+    color: #666;
+}
+
+.link-cadastro a {
+    color: #1aa3ff;
+    text-decoration: none;
+    font-weight: bold;
+}

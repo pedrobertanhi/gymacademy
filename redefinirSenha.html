@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Power Gym</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/redefinirSenha.css">
+</head>
+
+<body>
+
+    <!-- Alterar esse cammpo para imagem Power Gym Academy -->
+    <div class="cartao-login">
+        <div class="container-logo">
+            <div class="titulo-logo">POWER</div>
+            <div class="subtitulo-logo">GYM CENTER</div>
+        </div>
+        <!-- Alterar esse cammpo para imagem Power Gym Academy -->
+
+        <h2>Esqueceu Sua Senha ?</h2>
+
+        <form action="#" method="POST">
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-key icone-esquerda"></i>
+                <input type="password" name="nova-senha" id="nova-senha" placeholder="Nova Senha" required>
+                <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisibilidade(this)"></i>
+            </div>
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-key icone-esquerda"></i>
+                <input type="password" name="confirmar-senha" id="confirmar-senha" placeholder="Confirmar Nova Senha"
+                    required>
+                <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisibilidade(this)"></i>
+            </div>
+
+
+            <button type="submit" class="botao-redefinir">Refefinir Senha</button>
+        </form>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+
+</html>

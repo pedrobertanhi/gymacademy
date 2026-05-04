@@ -1,0 +1,330 @@
+/* ================= CONFIGURAÇÕES GERAIS ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #eef4fc;
+    color: #333;
+}
+
+.layout-dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ================= MENU LATERAL ================= */
+.menu-lateral {
+    width: 260px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #e1e8f0;
+    padding: 30px 0;
+}
+
+.container-logo {
+    text-align: center;
+    color: #1aa3ff;
+    margin-bottom: 40px;
+}
+
+.titulo-logo { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+.subtitulo-logo { font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+
+.navegacao-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+.item-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #1aa3ff;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.item-nav.ativo {
+    background-color: #1aa3ff;
+    color: #ffffff;
+}
+
+.item-nav:hover:not(.ativo) {
+    background-color: #f0f7ff;
+}
+
+.rodape-menu {
+    padding: 0 20px;
+    border-top: 1px solid #e1e8f0;
+    padding-top: 20px;
+}
+
+.item-sair {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ff4444; /* Cor de alerta para sair */
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+}
+
+.info-versao p {
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* ================= CONTEÚDO PRINCIPAL ================= */
+.conteudo-principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Cabeçalho Azul */
+.cabecalho-dashboard {
+    background-color: #1aa3ff;
+    color: white;
+    padding: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 4px 15px rgba(26, 163, 255, 0.2);
+}
+
+.cabecalho-dashboard h1 { font-size: 28px; margin-bottom: 5px; font-weight: 800; }
+.cabecalho-dashboard p { font-size: 14px; opacity: 0.9; }
+
+/* Área de seções internas */
+.area-conteudo {
+    padding: 30px 40px;
+}
+
+.secao-dashboard {
+    margin-bottom: 35px;
+}
+
+.secao-dashboard h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+/* Barra de Busca e Lotação */
+.info-gerais-controles {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.badge-lotacao {
+    background-color: #1aa3ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge-lotacao span {
+    background-color: white;
+    color: #1aa3ff;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+.barra-busca {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.barra-busca i { color: white; }
+.barra-busca input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+}
+.barra-busca input::placeholder { color: rgba(255,255,255,0.7); }
+
+/* ================= AÇÕES RÁPIDAS (AJUSTADO PARA <a>) ================= */
+.grid-acoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.cartao-acao {
+    background-color: #1aa3ff;
+    color: white;
+    text-decoration: none; /* Importante para links */
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(26, 163, 255, 0.15);
+}
+
+.cartao-acao i { font-size: 24px; }
+
+.cartao-acao:hover {
+    background-color: #108be6;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(26, 163, 255, 0.3);
+}
+
+/* ================= LISTA DE ALUNOS ================= */
+.container-lista {
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.linha-aluno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f4f8;
+}
+
+.linha-aluno:last-child { border-bottom: none; }
+
+.info-aluno {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 2;
+}
+
+.icone-aluno {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1aa3ff;
+}
+
+.textos-aluno h4 { font-size: 15px; color: #333; margin-bottom: 2px; font-weight: 600; }
+.textos-aluno p { font-size: 12px; color: #888; }
+
+.btn-catraca {
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-catraca.ativo { background-color: #1aa3ff; }
+.btn-catraca.ativo:hover { background-color: #108be6; }
+.btn-catraca.inativo { background-color: #bdc3c7; cursor: not-allowed; }
+
+/* ================= MODAL ================= */
+.fundo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.caixa-modal {
+    background-color: #1aa3ff;
+    color: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.btn-fechar-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.btn-fechar-modal:hover { opacity: 1; transform: rotate(90deg); }
+
+.corpo-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.icone-modal { font-size: 70px; margin-bottom: 10px; }
+
+.botoes-modal {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-modal {
+    flex: 1;
+    background-color: white;
+    color: #1aa3ff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-modal:hover { background-color: #f0f7ff; transform: translateY(-2px); }

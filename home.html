@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Power Gym</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+
+    <div class="layout-dashboard">
+
+        <aside class="menu-lateral">
+            <div class="container-logo">
+                <div class="titulo-logo">POWER</div>
+                <div class="subtitulo-logo">GYM CENTER</div>
+            </div>
+
+            <nav class="navegacao-principal">
+                <a href="home.html" class="item-nav ativo">
+                    <i class="fa-solid fa-house"></i> Início
+                </a>
+                <a href="agenda.html" class="item-nav">
+                    <i class="fa-solid fa-calendar-days"></i> Agenda
+                </a>
+                <a href="cadastro_admin.html" class="item-nav">
+                    <i class="fa-solid fa-user"></i> Cadastro
+                </a>
+            </nav>
+
+            <div class="rodape-menu">
+                <a href="login.html" class="item-sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                </a>
+                <div class="info-versao">
+                    <p>PowerGym2024</p>
+                    <p>Versão 1.02.15</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo-principal">
+
+            <header class="cabecalho-dashboard">
+                <h1>Bem-Vindo, João Paulo!</h1>
+                <p>Tenha Uma Gestão Eficiente.</p>
+            </header>
+
+            <div class="area-conteudo">
+
+                <section class="secao-dashboard">
+                    <h3>Informações Gerais</h3>
+                    <div class="info-gerais-controles">
+                        <div class="badge-lotacao">
+                            Lotação Atual: <span>142</span>
+                        </div>
+                        <div class="barra-busca">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="busca-aluno" placeholder="Buscar Aluno">
+                        </div>
+                    </div>
+                </section>
+                <section class="secao-dashboard">
+                    <h3>Ações Rápidas</h3>
+                    <div class="grid-acoes">
+                        <a href="agenda.html" class="cartao-acao">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Agendar Aula</span>
+                        </a>
+                        <a href="cadastro_admin.html" class="cartao-acao">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Novo Cadastro</span>
+                        </a>
+                        <a href="cadastro_admin.html?aba=lista" class="cartao-acao">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <span>Atualizar Cadastro</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="secao-dashboard">
+                    <h3>Lista De Informações</h3>
+                    <p class="subtitulo-secao">Alunos:</p>
+
+                    <div class="container-lista">
+                        <div class="linha-aluno">
+                            <div class="info-aluno">
+                                <i class="fa-solid fa-circle-user icone-aluno"></i>
+                                <div class="textos-aluno">
+                                    <h4>João Paulo Vieira</h4>
+                                    <p>55 11 98255-2567</p>
+                                </div>
+                            </div>
+                            <button class="btn-catraca ativo" onclick="abrirModalCatraca(true)">
+                                <i class="fa-solid fa-check"></i> Liberar Catraca
+                            </button>
+                            <span class="status-aluno status-ativo">Ativo</span>
+                        </div>
+
+                        <div class="linha-aluno">
+                            <div class="info-aluno">
+                                <i class="fa-solid fa-circle-user icone-aluno"></i>
+                                <div class="textos-aluno">
+                                    <h4>Matheus Magalhães Moura</h4>
+                                    <p>55 11 98255-2567</p>
+                                </div>
+                            </div>
+                            <button class="btn-catraca ativo" onclick="abrirModalCatraca(true)">
+                                <i class="fa-solid fa-check"></i> Liberar Catraca
+                            </button>
+                            <span class="status-aluno status-ativo">Ativo</span>
+                        </div>
+
+                        <div class="linha-aluno">
+                            <div class="info-aluno">
+                                <i class="fa-solid fa-circle-user icone-aluno"></i>
+                                <div class="textos-aluno">
+                                    <h4>Pedro Henrique Gonçalves Bertanhi</h4>
+                                    <p>55 11 98255-2567</p>
+                                </div>
+                            </div>
+                            <button class="btn-catraca inativo" onclick="abrirModalCatraca(false)">
+                                <i class="fa-solid fa-check"></i> Liberar Catraca
+                            </button>
+                            <span class="status-aluno status-inativo">Inativo</span>
+                        </div>
+
+                        <div class="linha-aluno">
+                            <div class="info-aluno">
+                                <i class="fa-solid fa-circle-user icone-aluno"></i>
+                                <div class="textos-aluno">
+                                    <h4>David De Brito Alves</h4>
+                                    <p>55 11 98255-2567</p>
+                                </div>
+                            </div>
+                            <button class="btn-catraca ativo" onclick="abrirModalCatraca(true)">
+                                <i class="fa-solid fa-check"></i> Liberar Catraca
+                            </button>
+                            <span class="status-aluno status-ativo">Ativo</span>
+                        </div>
+
+                        <div class="linha-aluno">
+                            <div class="info-aluno">
+                                <i class="fa-solid fa-circle-user icone-aluno"></i>
+                                <div class="textos-aluno">
+                                    <h4>Felipe Anderson Anacleto Da Silva</h4>
+                                    <p>55 11 98255-2567</p>
+                                </div>
+                            </div>
+                            <button class="btn-catraca inativo" onclick="abrirModalCatraca(false)">
+                                <i class="fa-solid fa-check"></i> Liberar Catraca
+                            </button>
+                            <span class="status-aluno status-inativo">Inativo</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="fundo-modal" class="fundo-modal">
+        <div class="caixa-modal">
+            <i class="fa-solid fa-circle-xmark btn-fechar-modal" onclick="fecharModal()"></i>
+
+            <h2 id="titulo-modal">Liberar Catraca</h2>
+
+            <div class="corpo-modal" id="corpo-modal">
+                <div class="botoes-modal" id="botoes-modal">
+                    <button class="btn-modal" onclick="confirmarLiberacao()">Sim</button>
+                    <button class="btn-modal" onclick="fecharModal()">Não</button>
+                </div>
+                <div class="icone-modal">
+                    <i id="icone-estado" class="fa-solid fa-lock"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+
+</html>

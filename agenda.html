@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/agenda.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">POWER <span>GYM CENTER</span></div>
+            <nav>
+                <a href="#" class="nav-item active">Início</a>
+                <a href="#" class="nav-item">Agenda</a>
+                <a href="#" class="nav-item">Cadastro</a>
+            </nav>
+            <div class="logout">Sair</div>
+        </aside>
+
+        <main class="main-content">
+            <header class="welcome-banner">
+                <h1>Bem-Vindo, João Paulo!</h1>
+                <p>Tenha Uma Gestão Eficiente.</p>
+            </header>
+
+            <section class="agenda-section">
+                <div class="cards-container">
+                    <div class="class-card">
+                        <div class="card-header">
+                          AULA DE YOGA
+                        </div>
+                        <div class="card-body">
+                            <p class="day">Segunda</p>
+                            <h2 class="time">14H30</h2>
+                            <button class="btn-agendar">Agendar</button>
+                            <p class="professor">Profª Beatriz Carvalho</p>
+                            <p class="status open">Vagas Abertas</p>
+                        </div>
+                        <div class="card-footer">
+                            <img src="/img/yoga.jpg" alt="Yoga">
+                            <a href="#">Próximas Aulas</a>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="card-header">
+                         AULA DE BOXE
+                        </div>
+                        <div class="card-body">
+                            <p class="day">Quarta</p>
+                            <h2 class="time">19H30</h2>
+                            <button class="btn-agendar filled">Agendar</button>
+                            <p class="professor">Profº Roberto Lima</p>
+                            <p class="status filled">Vagas Preenchidas</p>
+                        </div>
+                        <div class="card-footer">
+                            <img src="/img/boxe.jpg" alt="Boxe">
+                            <a href="#">Próximas Aulas</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="class-card">
+                        <div class="card-header">
+                             AULA DE NATAÇÃO
+                        </div>
+                        <div class="card-body">
+                            <p class="day">Quinta</p>
+                            <h2 class="time">12:00</h2>
+                            <button class="btn-agendar open">Agendar</button>
+                            <p class="professor">Profº Almeida dos Santos</p>
+                            <p class="status open">Vagas Abertas</p>
+                        </div>
+                        <div class="card-footer">
+                            <img src="/img/natacao.jpg" alt="Natacao">
+                            <a href="#">Próximas Aulas</a>
+                        </div>
+                    </div>
+
+
+                    <div class="class-card">
+                        <div class="card-header">
+                        AULA DE DANÇA
+                        </div>
+                        <div class="card-body">
+                            <p class="day">Domingo</p>
+                            <h2 class="time">21:15</h2>
+                            <button class="btn-agendar filled">Agendar</button>
+                            <p class="professor">Profº Cristiane Araujo</p>
+                            <p class="status filled">Vagas Preenchidas</p>
+                        </div>
+                        <div class="card-footer">
+                            <img src="/img/danca.jpg" alt="Danca">
+                            <a href="#">Próximas Aulas</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+/* Reset básico para tirar margens indesejadas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue-primary: #0095FF;
+    --blue-light: #EBF5FF;
+    --text-dark: #333;
+    --bg-gray: #F0F5FA;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-gray);
+    height: 100vh;
+    overflow: hidden; /* Evita scroll na tela inteira */
+}
+
+/* O segredo para o menu lateral funcionar: Flexbox no container pai */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* --- SIDEBAR (MENU LATERAL) --- */
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #d1e1f0;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 20px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--blue-primary);
+    text-align: center;
+    line-height: 1.1;
+    font-style: italic;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--blue-primary); /* Linha divisória do Figma */
+}
+
+.logo span {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    font-style: normal;
+}
+
+nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--blue-primary);
+    padding: 15px 20px;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Estado ativo (O botão azul no menu) */
+.nav-item.active {
+    background-color: var(--blue-primary);
+    color: var(--white);
+}
+
+.nav-item:hover:not(.active) {
+    background-color: var(--blue-light);
+}
+
+.logout {
+    padding: 20px;
+    color: var(--blue-primary);
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+/* --- CONTEÚDO PRINCIPAL (DIREITA) --- */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto; /* Scroll apenas aqui se houver muitos cards */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Banner de Boas-vindas */
+.welcome-banner {
+    background: linear-gradient(90deg, #0095FF 0%, #00C2FF 100%);
+    color: var(--white);
+    padding: 40px 60px;
+    border-bottom-left-radius: 80px; /* Aquela curva grande do Figma */
+}
+
+.welcome-banner h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.welcome-banner p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* --- CARDS DA AGENDA --- */
+.agenda-section {
+    padding: 40px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: flex-start;
+}
+
+.class-card {
+    background: var(--white);
+    border: 1px solid #bde0ff;
+    border-radius: 20px;
+    width: 240px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.card-header {
+    background-color: var(--blue-light);
+    padding: 12px;
+    font-size: 0.75rem;
+    color: var(--blue-primary);
+    font-weight: 800;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.day {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.time {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin: 10px 0;
+}
+
+.btn-agendar {
+    background-color: var(--blue-primary);
+    color: var(--white);
+    border: none;
+    padding: 12px 0;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.btn-agendar.filled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.professor {
+    color: var(--blue-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.status {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.status.open { color: #888; }
+.status.filled { color: #333; }
+
+.card-footer {
+    padding: 15px;
+}
+
+.card-footer img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid var(--blue-primary);
+}
+
+.card-footer a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: var(--blue-primary);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
