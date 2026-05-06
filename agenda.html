@@ -1,106 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="/css/agenda.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - Power Gym</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
-
 <body>
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">POWER <span>GYM CENTER</span></div>
-            <nav>
-                <a href="#" class="nav-item active">Início</a>
-                <a href="#" class="nav-item">Agenda</a>
-                <a href="#" class="nav-item">Cadastro</a>
+
+    <div class="layout-dashboard">
+        <aside class="menu-lateral">
+            <div class="container-logo">
+                <div class="titulo-logo">POWER</div>
+                <div class="subtitulo-logo">GYM CENTER</div>
+            </div>
+
+            <nav class="navegacao-principal">
+                <a href="home.html" class="item-nav">
+                    <i class="fa-solid fa-house"></i> Início
+                </a>
+                <a href="agenda.html" class="item-nav ativo">
+                    <i class="fa-solid fa-calendar-days"></i> Agenda
+                </a>
+                <a href="cadastro_admin.html" class="item-nav">
+                    <i class="fa-solid fa-user"></i> Cadastro
+                </a>
             </nav>
-            <div class="logout">Sair</div>
+
+            <div class="rodape-menu">
+                <a href="login.html" class="item-sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                </a>
+                <div class="info-versao">
+                    <p>PowerGym2024</p>
+                    <p>Versão 1.02.15</p>
+                </div>
+            </div>
         </aside>
 
-        <main class="main-content">
-            <header class="welcome-banner">
-                <h1>Bem-Vindo, João Paulo!</h1>
+        <main class="conteudo-principal">
+            <header class="cabecalho-dashboard">
+                <h1>Agenda de Aulas</h1>
                 <p>Tenha Uma Gestão Eficiente.</p>
             </header>
 
-            <section class="agenda-section">
-                <div class="cards-container">
-                    <div class="class-card">
-                        <div class="card-header">
-                          AULA DE YOGA
+            <div class="area-conteudo">
+                <section class="secao-dashboard">
+                    <h3>Aulas Disponíveis</h3>
+                    
+                    <div class="grid-acoes">
+                        <div class="cartao-agenda">
+                            <div class="topo-card"><i class="fa-solid fa-calendar-day"></i> AULA DE YOGA</div>
+                            <div class="corpo-card">
+                                <span>Segunda</span>
+                                <h2>14H30</h2>
+                                <button class="btn-card-agenda" onclick="abrirAgendamento('Yoga', 'Segunda - 14:30')">Agendar</button>
+                                <p>Profª Beatriz Carvalho</p>
+                                <small class="status-aberto">Vagas: Abertas</small>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="day">Segunda</p>
-                            <h2 class="time">14H30</h2>
-                            <button class="btn-agendar">Agendar</button>
-                            <p class="professor">Profª Beatriz Carvalho</p>
-                            <p class="status open">Vagas Abertas</p>
+
+                        <div class="cartao-agenda">
+                            <div class="topo-card"><i class="fa-solid fa-dumbbell"></i> MUSCULAÇÃO</div>
+                            <div class="corpo-card">
+                                <span>Quarta</span>
+                                <h2>16H00</h2>
+                                <button class="btn-card-agenda" onclick="abrirAgendamento('Musculação', 'Quarta - 16:00')">Agendar</button>
+                                <p>Prof. André Rocha</p>
+                                <small class="status-aberto">Vagas: Abertas</small>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <img src="/img/yoga.jpg" alt="Yoga">
-                            <a href="#">Próximas Aulas</a>
+
+                        <div class="cartao-agenda">
+                            <div class="topo-card"><i class="fa-solid fa-music"></i> AULA DE DANÇA</div>
+                            <div class="corpo-card">
+                                <span>Sexta</span>
+                                <h2>20H05</h2>
+                                <button class="btn-card-agenda inativo" disabled>Cancelado</button>
+                                <p>Prof. João Paulo</p>
+                                <small class="status-fechado">Cancelado</small>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="class-card">
-                        <div class="card-header">
-                         AULA DE BOXE
-                        </div>
-                        <div class="card-body">
-                            <p class="day">Quarta</p>
-                            <h2 class="time">19H30</h2>
-                            <button class="btn-agendar filled">Agendar</button>
-                            <p class="professor">Profº Roberto Lima</p>
-                            <p class="status filled">Vagas Preenchidas</p>
-                        </div>
-                        <div class="card-footer">
-                            <img src="/img/boxe.jpg" alt="Boxe">
-                            <a href="#">Próximas Aulas</a>
-                        </div>
-                    </div>
-
-
-
-                    <div class="class-card">
-                        <div class="card-header">
-                             AULA DE NATAÇÃO
-                        </div>
-                        <div class="card-body">
-                            <p class="day">Quinta</p>
-                            <h2 class="time">12:00</h2>
-                            <button class="btn-agendar open">Agendar</button>
-                            <p class="professor">Profº Almeida dos Santos</p>
-                            <p class="status open">Vagas Abertas</p>
-                        </div>
-                        <div class="card-footer">
-                            <img src="/img/natacao.jpg" alt="Natacao">
-                            <a href="#">Próximas Aulas</a>
-                        </div>
-                    </div>
-
-
-                    <div class="class-card">
-                        <div class="card-header">
-                        AULA DE DANÇA
-                        </div>
-                        <div class="card-body">
-                            <p class="day">Domingo</p>
-                            <h2 class="time">21:15</h2>
-                            <button class="btn-agendar filled">Agendar</button>
-                            <p class="professor">Profº Cristiane Araujo</p>
-                            <p class="status filled">Vagas Preenchidas</p>
-                        </div>
-                        <div class="card-footer">
-                            <img src="/img/danca.jpg" alt="Danca">
-                            <a href="#">Próximas Aulas</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </section>
+                </section>
+            </div>
         </main>
     </div>
-</body>
 
+    <div id="fundo-modal" class="fundo-modal">
+        <div class="caixa-modal">
+            <i class="fa-solid fa-circle-xmark btn-fechar-modal" onclick="fecharModal()"></i>
+            <div id="conteudo-dinamico-modal">
+                </div>
+        </div>
+    </div>
+
+    <script src="js/agenda.js"></script>
+</body>
 </html>
