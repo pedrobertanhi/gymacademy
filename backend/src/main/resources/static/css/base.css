@@ -1,0 +1,279 @@
+/* ============================================
+   BASE — variáveis, reset, logo, sidebar, modais
+   Importado por TODAS as páginas
+   ============================================ */
+
+:root {
+    --azul: #1aa3ff;
+    --azul-escuro: #108be6;
+    --azul-claro: #eef4fc;
+    --azul-claro-2: #f0f7ff;
+    --azul-banner-2: #00C2FF;
+    --branco: #ffffff;
+    --texto: #333;
+    --texto-suave: #888;
+    --texto-label: #666;
+    --cinza-borda: #e1e8f0;
+    --cinza-fundo: #f0f5fa;
+    --cinza-inativo: #888;
+    --sombra-cartao: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    color: var(--texto);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ============================================
+   LOGO SVG
+   ============================================ */
+
+.logo-svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-svg.logo-grande {
+    width: 220px;
+    margin-bottom: 15px;
+}
+
+.logo-svg.logo-sidebar {
+    width: 210px;
+    margin: 0 auto 30px;
+    padding: 0 15px;
+}
+
+/* ============================================
+   LAYOUT DASHBOARD (home, agenda, cadastro)
+   ============================================ */
+
+.layout-dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--azul-claro);
+}
+
+.menu-lateral {
+    width: 260px;
+    min-width: 260px;
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid var(--cinza-borda);
+    padding: 30px 0;
+}
+
+.navegacao-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+.item-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    color: var(--azul);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.item-nav.ativo {
+    background-color: var(--azul);
+    color: var(--branco);
+}
+
+.item-nav:hover:not(.ativo) {
+    background-color: var(--azul-claro-2);
+}
+
+.rodape-menu {
+    padding: 20px;
+    border-top: 1px solid var(--cinza-borda);
+}
+
+.item-sair {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--azul);
+    font-weight: 600;
+    margin-bottom: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 14px;
+    padding: 0;
+}
+
+.info-versao p {
+    color: #999;
+    font-size: 11px;
+}
+
+/* ============================================
+   CONTEÚDO PRINCIPAL
+   ============================================ */
+
+.conteudo-principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.cabecalho-dashboard {
+    background: linear-gradient(90deg, var(--azul) 0%, var(--azul-banner-2) 100%);
+    color: var(--branco);
+    padding: 30px 40px;
+    border-bottom-right-radius: 80px;
+}
+
+.cabecalho-dashboard h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.cabecalho-dashboard p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* ============================================
+   MODAL BASE (todas as telas)
+   ============================================ */
+
+.fundo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.fundo-modal.aberto {
+    display: flex;
+}
+
+.caixa-modal {
+    background-color: var(--azul);
+    color: var(--branco);
+    width: 100%;
+    max-width: 420px;
+    padding: 30px 40px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-fechar-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--branco);
+    transition: transform 0.2s;
+    background: none;
+    border: none;
+}
+
+.btn-fechar-modal:hover {
+    transform: scale(1.1);
+}
+
+.btn-modal {
+    background-color: var(--branco);
+    color: var(--azul);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-modal:hover {
+    background-color: var(--azul-claro-2);
+}
+
+/* ============================================
+   MODAL SAIR (compartilhado)
+   ============================================ */
+
+.modal-sair-titulo {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.modal-sair-sub {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.modal-sair-botoes {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-sair-botoes .btn-modal {
+    flex: 1;
+}
+
+/* ============================================
+   POPUP DE SUCESSO (reutilizável)
+   ============================================ */
+
+.popup-sucesso {
+    text-align: center;
+    max-width: 380px;
+}
+
+.popup-sucesso-titulo {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.popup-sucesso-icone-wrap {
+    font-size: 90px;
+    color: var(--branco);
+    margin: 10px 0 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.popup-sucesso-tag {
+    background-color: var(--branco);
+    color: var(--texto);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+}

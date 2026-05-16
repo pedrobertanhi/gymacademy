@@ -1,0 +1,99 @@
+body {
+    background-color: var(--azul);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cartao-login {
+    background-color: var(--branco);
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    border-radius: 8px;
+    box-shadow: var(--sombra-cartao);
+    text-align: center;
+}
+
+h2 {
+    color: var(--texto);
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.grupo-entrada {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.grupo-entrada i.icone-esquerda {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--azul);
+    font-size: 14px;
+}
+
+.grupo-entrada input {
+    width: 100%;
+    padding: 15px 40px;
+    background-color: var(--azul-claro);
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--texto);
+    outline: none;
+}
+
+.grupo-entrada input::placeholder {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.icone-alternar-senha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.botao-redefinir {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--azul);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+}
+
+.botao-redefinir:hover {
+    background-color: var(--azul-escuro);
+}
+
+.erro-login {
+    color: #d33;
+    font-size: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.link-cadastro {
+    font-size: 12px;
+    color: var(--texto-label);
+}
+
+.link-cadastro a {
+    color: var(--azul);
+    font-weight: bold;
+}

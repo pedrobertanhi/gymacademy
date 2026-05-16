@@ -1,0 +1,57 @@
+/* Estilo das telas Novo Cadastro com banners azuis no topo/rodapé (PDF page 16) */
+
+.pagina-cadastro-aluno {
+    background-color: var(--azul-claro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.banner-azul-topo,
+.banner-azul-rodape {
+    width: 100%;
+    height: 60px;
+    background-color: var(--azul);
+    flex-shrink: 0;
+}
+
+.banner-azul-topo {
+    margin-bottom: 30px;
+}
+
+.banner-azul-rodape {
+    margin-top: 30px;
+}
+
+.pagina-cadastro-aluno .cartao-cadastro {
+    margin: 0 auto;
+    position: relative;
+}
+
+.btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: var(--azul);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: var(--azul-claro);
+}
+
+.btn-voltar i {
+    font-size: 16px;
+}

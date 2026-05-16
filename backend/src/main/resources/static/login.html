@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div class="cartao-login">
+        <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-grande">
+
+        <h2>Faça Seu Login De Admin!</h2>
+
+        <form id="form-login" novalidate>
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-envelope icone-esquerda"></i>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-key icone-esquerda"></i>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisibilidade('senha', this)"></i>
+            </div>
+
+            <a href="redefinir-senha.html" class="link-esqueci-senha">ESQUECI A SENHA</a>
+
+            <button type="submit" class="botao-entrar">Entrar</button>
+
+            <div id="erro-login" class="erro-login" hidden></div>
+
+            <div class="link-cadastro">
+                Não tem conta? <a href="cadastro.html">Fazer Cadastro.</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/shared.js" defer></script>
+    <script src="js/login.js" defer></script>
+</body>
+</html>

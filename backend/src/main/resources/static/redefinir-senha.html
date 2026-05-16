@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/redefinir-senha.css">
+</head>
+<body>
+
+    <div class="cartao-login">
+        <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-grande">
+
+        <h2>Esqueceu Sua Senha?</h2>
+
+        <form id="form-redefinir" novalidate>
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-key icone-esquerda"></i>
+                <input type="password" id="nova-senha" name="nova-senha" placeholder="Nova Senha" required>
+                <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisibilidadeCampo('nova-senha', this)"></i>
+            </div>
+
+            <div class="grupo-entrada">
+                <i class="fa-solid fa-key icone-esquerda"></i>
+                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Nova Senha" required>
+                <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisibilidadeCampo('confirmar-senha', this)"></i>
+            </div>
+
+            <div id="erro-redefinir" class="erro-login" hidden></div>
+
+            <button type="submit" class="botao-redefinir">Redefinir Senha</button>
+
+            <div class="link-cadastro">
+                Lembrou? <a href="login.html">Voltar Ao Login.</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/shared.js" defer></script>
+    <script src="js/redefinir-senha.js" defer></script>
+</body>
+</html>
