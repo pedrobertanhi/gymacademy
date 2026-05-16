@@ -67,7 +67,6 @@ function selecionarAluno(id) {
     document.getElementById('up-email').value = a.email || '';
     document.getElementById('up-senha').value = '';
     document.getElementById('up-contato').value = a.contato || '';
-    document.getElementById('up-cpf').value = a.cpf || '';
     const radioG = document.querySelector(`input[name="up-genero"][value="${a.genero || 'masculino'}"]`);
     if (radioG) radioG.checked = true;
     const radioN = document.querySelector(`input[name="up-notif"][value="${a.notificacoes || 'todos'}"]`);
@@ -99,20 +98,8 @@ function mascararContato(valor) {
     return `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
 }
 
-function mascararCpf(valor) {
-    let v = valor.replace(/\D/g, '').slice(0, 11);
-    if (v.length <= 3) return v;
-    if (v.length <= 6) return `${v.slice(0, 3)}.${v.slice(3)}`;
-    if (v.length <= 9) return `${v.slice(0, 3)}.${v.slice(3, 6)}.${v.slice(6)}`;
-    return `${v.slice(0, 3)}.${v.slice(3, 6)}.${v.slice(6, 9)}-${v.slice(9)}`;
-}
-
 document.getElementById('up-contato').addEventListener('input', (e) => {
     e.target.value = mascararContato(e.target.value);
-});
-
-document.getElementById('up-cpf').addEventListener('input', (e) => {
-    e.target.value = mascararCpf(e.target.value);
 });
 
 document.getElementById('form-atualizar').addEventListener('submit', (e) => {
@@ -124,11 +111,10 @@ document.getElementById('form-atualizar').addEventListener('submit', (e) => {
     const email = document.getElementById('up-email').value.trim();
     const senha = document.getElementById('up-senha').value;
     const contato = document.getElementById('up-contato').value.trim();
-    const cpf = document.getElementById('up-cpf').value.trim();
     const genero = document.querySelector('input[name="up-genero"]:checked')?.value || 'nenhum';
     const notif = document.querySelector('input[name="up-notif"]:checked')?.value || 'todos';
 
-    if (!nome || !email || !contato || !cpf) {
+    if (!nome || !email || !contato) {
         erro.textContent = 'Preencha todos os campos obrigatórios.';
         erro.hidden = false;
         return;
@@ -140,7 +126,7 @@ document.getElementById('form-atualizar').addEventListener('submit', (e) => {
 
     todos[idx] = {
         ...todos[idx],
-        nome, email, contato, cpf, genero,
+        nome, email, contato, genero,
         notificacoes: notif
     };
     if (senha && senha.length >= 6) todos[idx].senha = senha;

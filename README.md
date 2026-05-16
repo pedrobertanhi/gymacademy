@@ -99,7 +99,7 @@ gymacademy/
 
 | Entidade | Tabela | Campos principais |
 |---|---|---|
-| `Aluno` | `alunos` | id, nome, email, contato, cpf, genero, planoInicio, planoFim, ativo |
+| `Aluno` | `alunos` | id, nome, email, contato, genero, planoInicio, planoFim, ativo |
 | `Admin` | `admins` | id, nome, email, senha (BCrypt), contato, genero |
 | `Aula` | `aulas` | id, nome, professor, dia, horarioInicio/Fim, capacidade, status (ABERTA/CHEIA/CANCELADA), imagem |
 | `Acesso` | `acessos` | id, aluno (FK), momento, liberado, motivo |
