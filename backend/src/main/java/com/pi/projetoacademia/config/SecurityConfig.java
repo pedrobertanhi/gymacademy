@@ -20,6 +20,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                // LINHA ADICIONADA: Permite a renderização de Iframes (Exigência do painel H2)
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 
         return http.build();
