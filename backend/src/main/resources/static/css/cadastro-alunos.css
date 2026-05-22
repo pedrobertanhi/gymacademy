@@ -1,0 +1,28 @@
+.hub-acoes {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+.botao-hub {
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 25px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(26, 163, 255, 0.25);
+    min-width: 220px;
+    text-align: center;
+}
+
+.botao-hub:hover {
+    background-color: var(--azul-escuro);
+    transform: translateY(-2px);
+    color: var(--branco);
+}

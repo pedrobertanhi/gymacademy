@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Cadastro - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/atualizar-cadastro.css">
+</head>
+<body>
+
+    <div class="layout-dashboard">
+
+        <aside class="menu-lateral">
+            <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+
+            <nav class="navegacao-principal">
+                <a href="home.html" class="item-nav">
+                    <i class="fa-solid fa-house"></i> Início
+                </a>
+                <a href="agenda.html" class="item-nav">
+                    <i class="fa-solid fa-calendar-days"></i> Agenda
+                </a>
+                <a href="cadastro-alunos.html" class="item-nav ativo">
+                    <i class="fa-solid fa-user"></i> Cadastro
+                </a>
+            </nav>
+
+            <div class="rodape-menu">
+                <button type="button" class="item-sair" data-acao="sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                </button>
+                <div class="info-versao">
+                    <p>PowerGym2026</p>
+                    <p>Versão 1.02.15</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo-principal">
+
+            <header class="cabecalho-dashboard">
+                <h1 id="boas-vindas">Bem-Vindo!</h1>
+                <p>Tenha Uma Gestão Eficiente.</p>
+            </header>
+
+            <div class="area-form" id="area-form" hidden>
+                <form id="form-atualizar" novalidate>
+
+                    <div class="campo-foto">
+                        <i class="fa-solid fa-circle-user foto-aluno"></i>
+                        <span class="aluno-id" id="aluno-id-display"></span>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label for="up-nome">Nome*</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-circle-user icone-esquerda"></i>
+                            <input type="text" id="up-nome" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label for="up-email">Email*</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-envelope icone-esquerda"></i>
+                            <input type="email" id="up-email" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label for="up-senha">Senha*</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-key icone-esquerda"></i>
+                            <input type="password" id="up-senha" placeholder="**********">
+                            <i class="fa-solid fa-eye icone-alternar-senha" onclick="alternarVisSenha('up-senha', this)"></i>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label for="up-contato">Contato*</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-phone icone-esquerda"></i>
+                            <span class="prefixo-pais">+55</span>
+                            <input type="text" id="up-contato" placeholder="(11) 0000-0000" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label for="up-cpf">CPF*</label>
+                        <div class="input-com-icone">
+                            <i class="fa-solid fa-id-card icone-esquerda"></i>
+                            <input type="text" id="up-cpf" placeholder="000.000.000-00" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label>Gênero</label>
+                        <div class="container-radio">
+                            <i class="fa-solid fa-circle-user icone-genero"></i>
+                            <div class="opcoes-radio">
+                                <label class="radio-item">
+                                    <input type="radio" name="up-genero" value="masculino" checked>
+                                    <span>Masculino</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="up-genero" value="feminino">
+                                    <span>Feminino</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="up-genero" value="nenhum">
+                                    <span>Não informar</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grupo-entrada">
+                        <label>Receber Notificações</label>
+                        <div class="container-radio">
+                            <i class="fa-solid fa-bell icone-genero"></i>
+                            <div class="opcoes-radio">
+                                <label class="radio-item">
+                                    <input type="radio" name="up-notif" value="todos" checked>
+                                    <span>Todos</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="up-notif" value="email">
+                                    <span>E-mail</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="up-notif" value="mensagem">
+                                    <span>Mensagem</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="up-notif" value="ligacao">
+                                    <span>Ligação</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="erro-up" class="erro-login" hidden></div>
+
+                    <button type="submit" class="botao-atualizar">Atualizar Cadastro</button>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal de busca (abre primeiro) -->
+    <div id="modal-busca" class="fundo-modal aberto">
+        <div class="caixa-modal modal-busca">
+            <button type="button" class="btn-fechar-modal" onclick="cancelarBusca()" aria-label="Fechar">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <h2 class="modal-titulo">Buscar Aluno</h2>
+            <p class="modal-sub">Qual aluno você quer atualizar?</p>
+
+            <div class="modal-busca-campo">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="busca-modal" placeholder="Nome ou telefone" autofocus>
+            </div>
+
+            <div id="resultados-busca" class="modal-resultados">
+                <!-- Renderizado por JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/shared.js" defer></script>
+    <script src="js/atualizar-cadastro.js" defer></script>
+</body>
+</html>

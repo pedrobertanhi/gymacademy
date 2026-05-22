@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Agendamentos - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/historico-agendamento.css">
+</head>
+<body>
+
+<div class="layout-dashboard">
+
+    <aside class="menu-lateral">
+        <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+
+        <nav class="navegacao-principal">
+            <a href="home.html" class="item-nav">
+                <i class="fa-solid fa-house"></i> Início
+            </a>
+            <a href="agenda.html" class="item-nav">
+                <i class="fa-solid fa-calendar-days"></i> Agenda
+            </a>
+            <a href="historico-agendamento.html" class="item-nav ativo">
+                <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+            </a>
+            <a href="cadastro-alunos.html" class="item-nav">
+                <i class="fa-solid fa-user"></i> Cadastro
+            </a>
+        </nav>
+
+        <div class="rodape-menu">
+            <button type="button" class="item-sair" data-acao="sair">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+            </button>
+            <div class="info-versao">
+                <p>PowerGym2026</p>
+                <p>Versão 1.02.15</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="conteudo-principal">
+
+        <header class="cabecalho-dashboard">
+            <h1 id="boas-vindas">Histórico de Agendamentos</h1>
+            <p>Consulte e gerencie a lista de presença e marcações de horários.</p>
+        </header>
+
+        <div class="area-conteudo">
+
+            <section class="secao-dashboard">
+                <h3>Filtrar Agendamentos</h3>
+                <div class="info-gerais-controles">
+
+                    <div class="barra-busca" style="max-width: 320px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="busca-aluno" placeholder="Buscar por nome do aluno...">
+                    </div>
+
+                    <div class="barra-busca" style="max-width: 250px;">
+                        <i class="fa-solid fa-filter"></i>
+                        <select id="filtro-modalidade" style="background: transparent; border: none; color: var(--branco); outline: none; width: 100%; font-size: 13px; cursor: pointer;">
+                            <option value="todos" style="color: var(--texto);">Todas as Modalidades</option>
+                            <option value="AULA DE YOGA" style="color: var(--texto);">Yoga</option>
+                            <option value="AULA DE BOXE" style="color: var(--texto);">Boxe</option>
+                            <option value="AULA DE NATAÇÃO" style="color: var(--texto);">Natação</option>
+                            <option value="AULA DE DANÇA" style="color: var(--texto);">Dança</option>
+                        </select>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="secao-dashboard">
+                <h3>Lista de Alunos Confirmados</h3>
+                <div class="container-tabela-historico">
+                    <table class="tabela-historico">
+                        <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Contato</th>
+                            <th>E-mail</th>
+                            <th>Modalidade</th>
+                            <th>Horário (Dia)</th>
+                            <th style="text-align: center;">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpo-tabela-historico">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<div id="modal-confirmar-desmarcar" class="fundo-modal">
+    <div class="caixa-modal" style="border-top: 5px solid #e11d48; max-width: 420px; text-align: center; background-color: var(--branco);">
+        <div style="font-size: 50px; color: #e11d48; margin-bottom: 15px;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h2 style="color: var(--texto, #2c3e50); margin-bottom: 12px; font-size: 22px; font-weight: bold;">
+            Desmarcar Aluno?
+        </h2>
+        <p style="color: #475569; font-size: 15px; margin-bottom: 25px; line-height: 1.5;">
+            Deseja realmente desmarcar o aluno desta aula? Esta ação não pode ser desfeita.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+            <button id="btn-modal-sim" class="btn-modal" type="button" style="background-color: #e11d48; color: #ffffff; flex: 1; font-weight: bold;">
+                Sim, Desmarcar
+            </button>
+            <button type="button" onclick="fecharModalConfirmar()" style="background-color: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; flex: 1;">
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+<script src="js/shared.js"></script>
+<script src="js/historico-agendamento.js" defer></script>
+</body>
+</html>

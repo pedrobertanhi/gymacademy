@@ -1,0 +1,237 @@
+/* layout, sidebar, cabeçalho e modal base já vêm de base.css */
+
+.area-conteudo {
+    padding: 30px 40px;
+}
+
+.secao-dashboard {
+    margin-bottom: 35px;
+}
+
+.secao-dashboard h3 {
+    font-size: 16px;
+    color: var(--texto);
+    margin-bottom: 15px;
+}
+
+/* ================= INFORMAÇÕES GERAIS ================= */
+
+.info-gerais-controles {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.badge-lotacao {
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.badge-lotacao span {
+    background-color: var(--branco);
+    color: var(--texto);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.barra-busca {
+    background-color: var(--azul);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.barra-busca i {
+    color: var(--branco);
+}
+
+.barra-busca input {
+    background: transparent;
+    border: none;
+    color: var(--branco);
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+}
+
+.barra-busca input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================= AÇÕES RÁPIDAS ================= */
+
+.grid-acoes {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cartao-acao {
+    background-color: var(--azul);
+    color: var(--branco);
+    border: none;
+    border-radius: 10px;
+    padding: 25px 20px;
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(26, 163, 255, 0.2);
+}
+
+.cartao-acao i {
+    font-size: 24px;
+}
+
+.cartao-acao:hover {
+    background-color: var(--azul-escuro);
+    transform: translateY(-2px);
+    color: var(--branco);
+}
+
+/* ================= LISTA DE ALUNOS ================= */
+
+.subtitulo-secao {
+    color: var(--azul);
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.container-lista {
+    background-color: var(--branco);
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: var(--sombra-suave);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.container-lista::-webkit-scrollbar { width: 8px; }
+.container-lista::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.container-lista::-webkit-scrollbar-thumb { background: var(--azul); border-radius: 10px; }
+
+.linha-aluno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+}
+
+.linha-aluno:last-child {
+    border-bottom: none;
+}
+
+.info-aluno {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 2;
+    min-width: 0;
+}
+
+.icone-aluno {
+    font-size: 24px;
+    color: var(--azul);
+    flex-shrink: 0;
+}
+
+.textos-aluno h4 {
+    font-size: 14px;
+    color: var(--texto);
+    margin-bottom: 2px;
+}
+
+.textos-aluno p {
+    font-size: 11px;
+    color: var(--texto-suave);
+}
+
+.btn-catraca {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    color: var(--branco);
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 160px;
+    justify-content: center;
+}
+
+.btn-catraca.ativo { background-color: var(--azul); }
+.btn-catraca.ativo:hover { background-color: var(--azul-escuro); }
+.btn-catraca.inativo { background-color: var(--cinza-inativo); }
+
+.status-aluno {
+    flex: 0 0 70px;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status-ativo { color: var(--azul); }
+.status-inativo { color: var(--cinza-inativo); }
+
+.lista-vazia {
+    text-align: center;
+    padding: 25px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+/* ================= MODAL CATRACA ================= */
+
+#modal-catraca-titulo {
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+#modal-catraca-corpo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+#modal-catraca-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 45%;
+}
+
+#modal-catraca-botoes .btn-modal {
+    width: 100%;
+}
+
+.icone-modal {
+    font-size: 90px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}

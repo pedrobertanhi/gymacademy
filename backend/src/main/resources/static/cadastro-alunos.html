@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/cadastro-alunos.css">
+</head>
+<body>
+
+    <div class="layout-dashboard">
+
+        <aside class="menu-lateral">
+            <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+
+            <nav class="navegacao-principal">
+                <a href="home.html" class="item-nav">
+                    <i class="fa-solid fa-house"></i> Início
+                </a>
+                <a href="agenda.html" class="item-nav">
+                    <i class="fa-solid fa-calendar-days"></i> Agenda
+                </a>
+                <a href="historico-agendamento.html" class="item-nav">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+                </a>
+                <a href="cadastro-alunos.html" class="item-nav ativo">
+                    <i class="fa-solid fa-user"></i> Cadastro
+                </a>
+            </nav>
+
+            <div class="rodape-menu">
+                <button type="button" class="item-sair" data-acao="sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                </button>
+                <div class="info-versao">
+                    <p>PowerGym2026</p>
+                    <p>Versão 1.02.15</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo-principal">
+
+            <header class="cabecalho-dashboard">
+                <h1 id="boas-vindas">Bem-Vindo!</h1>
+                <p>Tenha Uma Gestão Eficiente.</p>
+            </header>
+
+            <div class="hub-acoes">
+                <a href="novo-cadastro.html" class="botao-hub">Novo Cadastro</a>
+                <a href="atualizar-cadastro.html" class="botao-hub">Atualizar Cadastro</a>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/shared.js" defer></script>
+    <script src="js/cadastro-alunos.js" defer></script>
+</body>
+</html>

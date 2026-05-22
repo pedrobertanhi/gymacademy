@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/agenda.css">
+</head>
+<body>
+
+    <div class="layout-dashboard">
+
+        <aside class="menu-lateral">
+            <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+
+            <nav class="navegacao-principal">
+                <a href="home.html" class="item-nav">
+                    <i class="fa-solid fa-house"></i> Início
+                </a>
+                <a href="agenda.html" class="item-nav ativo">
+                    <i class="fa-solid fa-calendar-days"></i> Agenda
+                </a>
+                <a href="historico-agendamento.html" class="item-nav">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+                </a>
+                <a href="cadastro-alunos.html" class="item-nav">
+                    <i class="fa-solid fa-user"></i> Cadastro
+                </a>
+            </nav>
+
+            <div class="rodape-menu">
+                <button type="button" class="item-sair" data-acao="sair">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                </button>
+                <div class="info-versao">
+                    <p>PowerGym2026</p>
+                    <p>Versão 1.02.15</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo-principal">
+
+            <header class="cabecalho-dashboard">
+                <h1 id="boas-vindas">Bem-Vindo!</h1>
+                <p>Tenha Uma Gestão Eficiente.</p>
+            </header>
+
+            <section class="agenda-section">
+                <div class="cards-container" id="lista-aulas">
+                    <!-- Renderizado por agenda.js -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal: agendar (form) -->
+    <div id="modal-agendar" class="fundo-modal">
+        <div class="caixa-modal modal-agendar">
+            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <h2 class="modal-titulo">Meu Agendamento:</h2>
+            <div class="modal-agendar-corpo">
+                <form id="form-agendar" novalidate autocomplete="off">
+                    <div class="campo-com-sugestoes">
+                        <input type="text" id="ag-nome" placeholder="Nome Aluno" required autocomplete="off">
+                        <div id="ag-sugestoes" class="sugestoes-lista" hidden></div>
+                    </div>
+                    <input type="text" id="ag-contato" placeholder="Contato" required>
+                    <input type="email" id="ag-email" placeholder="Email" required>
+                    <p class="modal-aula-info" id="ag-info"></p>
+                    <p class="modal-aula-horario" id="ag-horario"></p>
+                    <div id="ag-erro" class="modal-erro" hidden></div>
+                    <button type="submit" class="btn-modal btn-modal-largo">Agendar Agora!</button>
+                </form>
+                <div class="modal-icone-grande">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: sem vagas -->
+    <div id="modal-sem-vagas" class="fundo-modal">
+        <div class="caixa-modal modal-status">
+            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <h2 class="modal-status-titulo">Sem Vagas!</h2>
+            <div class="modal-icone-grande">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <p class="modal-aula-info" id="sv-info"></p>
+            <p class="modal-aula-horario" id="sv-horario"></p>
+        </div>
+    </div>
+
+    <!-- Modal: cancelado -->
+    <div id="modal-cancelado" class="fundo-modal">
+        <div class="caixa-modal modal-status">
+            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <div class="modal-icone-grande">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <h2 class="modal-status-titulo modal-status-cancelado">CANCELADO!</h2>
+        </div>
+    </div>
+
+    <!-- Modal: confirmado -->
+    <div id="modal-confirmado" class="fundo-modal">
+        <div class="caixa-modal modal-status">
+            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <div class="modal-icone-grande">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <p class="modal-confirmado-tag">Agendamento Confirmado!</p>
+        </div>
+    </div>
+
+    <script src="js/shared.js" defer></script>
+    <script src="js/agenda.js" defer></script>
+</body>
+</html>

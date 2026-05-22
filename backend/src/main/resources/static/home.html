@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - Power Gym Center</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<div class="layout-dashboard">
+
+    <aside class="menu-lateral">
+        <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+
+        <nav class="navegacao-principal">
+            <a href="home.html" class="item-nav ativo">
+                <i class="fa-solid fa-house"></i> Início
+            </a>
+            <a href="agenda.html" class="item-nav">
+                <i class="fa-solid fa-calendar-days"></i> Agenda
+            </a>
+            <a href="historico-agendamento.html" class="item-nav">
+                <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+            </a>
+            <a href="cadastro-alunos.html" class="item-nav">
+                <i class="fa-solid fa-user"></i> Cadastro
+            </a>
+        </nav>
+
+        <div class="rodape-menu">
+            <button type="button" class="item-sair" data-acao="sair">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+            </button>
+            <div class="info-versao">
+                <p>PowerGym2026</p>
+                <p>Versão 1.02.15</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="conteudo-principal">
+
+        <header class="cabecalho-dashboard">
+            <h1 id="boas-vindas">Bem-Vindo!</h1>
+            <p>Tenha Uma Gestão Eficiente.</p>
+        </header>
+
+        <div class="area-conteudo">
+
+            <section class="secao-dashboard">
+                <h3>Informações Gerais</h3>
+                <div class="info-generais-controles">
+                    <div class="badge-lotacao">
+                        Lotação Atual: <span id="lotacao-atual">0</span>
+                    </div>
+                    <div class="barra-busca">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="busca-aluno" placeholder="Buscar Aluno (nome ou telefone)">
+                    </div>
+                </div>
+            </section>
+
+            <section class="secao-dashboard">
+                <h3>Ações Rápidas</h3>
+                <div class="grid-acoes">
+                    <a href="agenda.html" class="cartao-acao">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Agendar Aula</span>
+                    </a>
+                    <a href="novo-cadastro.html" class="cartao-acao">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Novo Cadastro</span>
+                    </a>
+                    <a href="atualizar-cadastro.html" class="cartao-acao">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>Atualizar Cadastro</span>
+                    </a>
+                    <a href="historico-agendamento.html" class="cartao-acao">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Ver Histórico</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="secao-dashboard">
+                <h3>Lista De Informações</h3>
+                <p class="subtitulo-secao">Alunos:</p>
+
+                <div class="container-lista" id="lista-alunos">
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<div id="modal-catraca" class="fundo-modal">
+    <div class="caixa-modal">
+        <button type="button" class="btn-fechar-modal" onclick="fecharModalCatraca()" aria-label="Fechar">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+
+        <h2 id="modal-catraca-titulo">Liberar Catraca</h2>
+
+        <div class="corpo-modal" id="modal-catraca-corpo">
+            <div class="botoes-modal" id="modal-catraca-botoes">
+                <button class="btn-modal" type="button" onclick="confirmarLiberacao()">Sim</button>
+                <button class="btn-modal" type="button" onclick="fecharModalCatraca()">Não</button>
+            </div>
+            <div class="icone-modal">
+                <i id="modal-catraca-icone" class="fa-solid fa-lock"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-acesso-permitido" class="fundo-modal">
+    <div class="caixa-modal" style="border-top: 5px solid #10b981; max-width: 400px; text-align: center;">
+        <div style="font-size: 60px; color: #10b981; margin-bottom: 15px;">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2 style="color: var(--texto); margin-bottom: 10px; font-size: 22px;">Acesso Liberado</h2>
+        <p id="msg-permitido-texto" style="color: var(--texto-suave); font-size: 14px; margin-bottom: 20px;">
+            Entrada registrada com sucesso!
+        </p>
+        <button class="btn-modal" type="button" onclick="fecharModalAcesso('modal-acesso-permitido')" style="background-color: #10b981; width: 100%;">
+            OK
+        </button>
+    </div>
+</div>
+
+<div id="modal-acesso-negado" class="fundo-modal">
+    <div class="caixa-modal" style="border-top: 5px solid #ef4444; max-width: 400px; text-align: center;">
+        <div style="font-size: 60px; color: #ef4444; margin-bottom: 15px;">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <h2 style="color: var(--texto); margin-bottom: 10px; font-size: 22px;">Acesso Negado</h2>
+        <p id="msg-negado-texto" style="color: var(--texto-suave); font-size: 14px; margin-bottom: 20px;">
+            Motivo do bloqueio do aluno.
+        </p>
+        <button class="btn-modal" type="button" onclick="fecharModalAcesso('modal-acesso-negado')" style="background-color: #ef4444; width: 100%;">
+            Entendido
+        </button>
+    </div>
+</div>
+
+<script src="js/shared.js" defer></script>
+<script src="js/home.js" defer></script>
+</body>
+</html>

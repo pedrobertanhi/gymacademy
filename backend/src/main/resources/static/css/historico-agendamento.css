@@ -1,0 +1,77 @@
+/* ============================================
+   ESTILIZAÇÃO DA TABELA DE HISTÓRICO
+   ============================================ */
+
+.container-tabela-historico {
+    background-color: var(--branco);
+    border-radius: 10px;
+    box-shadow: var(--sombra-suave);
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.tabela-historico {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabela-historico th {
+    background-color: var(--azul-claro, #e6f4ff);
+    color: var(--azul);
+    font-weight: bold;
+    padding: 15px 20px;
+    border-bottom: 2px solid #eee;
+    font-size: 13px;
+}
+
+.tabela-historico td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    color: var(--texto);
+}
+
+.tabela-historico tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-historico tr:hover {
+    background-color: rgba(26, 163, 255, 0.03);
+}
+
+/* Badges e destaques internos */
+.badge-tabela-modalidade {
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.horario-tabela-destaque {
+    font-weight: bold;
+    color: var(--texto);
+}
+
+/* Botão Desmarcar / Remover */
+.btn-remover-reserva {
+    background-color: #ffebeef0;
+    color: #e11d48;
+    border: 1px solid #fecdd3;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    transition: 0.2s;
+}
+
+.btn-remover-reserva:hover {
+    background-color: #e11d48;
+    color: var(--branco);
+    border-color: #e11d48;
+}
