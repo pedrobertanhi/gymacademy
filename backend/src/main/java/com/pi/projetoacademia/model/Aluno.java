@@ -41,4 +41,7 @@ public class Aluno {
 
     @Column(nullable = false)
     private boolean ativo = true;
+
+    @Column(nullable = false)
+    private String senha;
 }

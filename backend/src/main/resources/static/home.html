@@ -84,7 +84,13 @@
                     <p class="subtitulo-secao">Alunos:</p>
 
                     <div class="container-lista" id="lista-alunos">
-                        <!-- Renderizado por home.js -->
+                    </div>
+                </section>
+
+                <section class="secao-dashboard" style="margin-top: 20px;">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Painel de Últimos Acessos</h3>
+                    <div class="container-lista" id="lista-acessos-recentes" style="margin-top: 15px;">
+                        <div class="lista-vazia">Carregando histórico...</div>
                     </div>
                 </section>
 
@@ -104,7 +110,7 @@
             <div class="corpo-modal" id="modal-catraca-corpo">
                 <div class="botoes-modal" id="modal-catraca-botoes">
                     <button class="btn-modal" type="button" onclick="confirmarLiberacao()">Sim</button>
-                    <button class="btn-modal" type="button" onclick="fecharModalCatraca()">Não</button>
+                    <button type="button" class="btn-modal btn-nao" onclick="negarLiberacao()">Não</button>
                 </div>
                 <div class="icone-modal">
                     <i id="modal-catraca-icone" class="fa-solid fa-lock"></i>

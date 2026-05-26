@@ -11,119 +11,131 @@
 </head>
 <body>
 
-    <div class="layout-dashboard">
+<div class="layout-dashboard">
 
-        <aside class="menu-lateral">
-            <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
+    <aside class="menu-lateral">
+        <img src="assets/logoPowerGymCenter.svg" alt="Power Gym Center" class="logo-svg logo-sidebar">
 
-            <nav class="navegacao-principal">
-                <a href="home.html" class="item-nav">
-                    <i class="fa-solid fa-house"></i> Início
-                </a>
-                <a href="agenda.html" class="item-nav ativo">
-                    <i class="fa-solid fa-calendar-days"></i> Agenda
-                </a>
-                <a href="cadastro-alunos.html" class="item-nav">
-                    <i class="fa-solid fa-user"></i> Cadastro
-                </a>
-            </nav>
+        <nav class="navegacao-principal">
+            <a href="home.html" class="item-nav">
+                <i class="fa-solid fa-house"></i> Início
+            </a>
+            <a href="agenda.html" class="item-nav ativo">
+                <i class="fa-solid fa-calendar-days"></i> Agenda
+            </a>
+            <a href="cadastro-alunos.html" class="item-nav">
+                <i class="fa-solid fa-user"></i> Cadastro
+            </a>
+        </nav>
 
-            <div class="rodape-menu">
-                <button type="button" class="item-sair" data-acao="sair">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+        <div class="rodape-menu">
+            <button type="button" class="item-sair" data-acao="sair">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+            </button>
+            <div class="info-versao">
+                <p>PowerGym2026</p>
+                <p>Versão 1.02.15</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="conteudo-principal">
+
+        <header class="cabecalho-dashboard">
+            <h1 id="boas-vindas">Bem-Vindo!</h1>
+            <p>Tenha Uma Gestão Eficiente.</p>
+
+            <div id="area-checkin-aluno" style="margin-top: 15px; display: none;">
+                <button type="button" class="btn-salvar" onclick="solicitarCheckin()" style="background-color: #ff5e00; width: auto; padding: 10px 20px; font-weight: bold;">
+                    <i class="fa-solid fa-location-dot"></i> Fazer Check-in na Catraca
                 </button>
-                <div class="info-versao">
-                    <p>PowerGym2026</p>
-                    <p>Versão 1.02.15</p>
-                </div>
             </div>
-        </aside>
+        </header>
 
-        <main class="conteudo-principal">
-
-            <header class="cabecalho-dashboard">
-                <h1 id="boas-vindas">Bem-Vindo!</h1>
-                <p>Tenha Uma Gestão Eficiente.</p>
-            </header>
-
-            <section class="agenda-section">
-                <div class="cards-container" id="lista-aulas">
-                    <!-- Renderizado por agenda.js -->
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <!-- Modal: agendar (form) -->
-    <div id="modal-agendar" class="fundo-modal">
-        <div class="caixa-modal modal-agendar">
-            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </button>
-            <h2 class="modal-titulo">Meu Agendamento:</h2>
-            <div class="modal-agendar-corpo">
-                <form id="form-agendar" novalidate autocomplete="off">
-                    <div class="campo-com-sugestoes">
-                        <input type="text" id="ag-nome" placeholder="Nome Aluno" required autocomplete="off">
-                        <div id="ag-sugestoes" class="sugestoes-lista" hidden></div>
-                    </div>
-                    <input type="text" id="ag-contato" placeholder="Contato" required>
-                    <input type="email" id="ag-email" placeholder="Email" required>
-                    <p class="modal-aula-info" id="ag-info"></p>
-                    <p class="modal-aula-horario" id="ag-horario"></p>
-                    <div id="ag-erro" class="modal-erro" hidden></div>
-                    <button type="submit" class="btn-modal btn-modal-largo">Agendar Agora!</button>
-                </form>
-                <div class="modal-icone-grande">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </div>
+        <section class="agenda-section">
+            <div class="cards-container" id="lista-aulas">
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Modal: sem vagas -->
-    <div id="modal-sem-vagas" class="fundo-modal">
-        <div class="caixa-modal modal-status">
-            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </button>
-            <h2 class="modal-status-titulo">Sem Vagas!</h2>
+    </main>
+</div>
+
+<div id="modal-agendar" class="fundo-modal">
+    <div class="caixa-modal modal-agendar">
+        <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <h2 class="modal-titulo">Meu Agendamento:</h2>
+        <div class="modal-agendar-corpo">
+            <form id="form-agendar" novalidate autocomplete="off">
+                <div class="campo-com-sugestoes">
+                    <input type="text" id="ag-nome" placeholder="Nome Aluno" required autocomplete="off">
+                    <div id="ag-sugestoes" class="sugestoes-lista" hidden></div>
+                </div>
+                <input type="text" id="ag-contato" placeholder="Contato" required>
+                <input type="email" id="ag-email" placeholder="Email" required>
+                <p class="modal-aula-info" id="ag-info"></p>
+                <p class="modal-aula-horario" id="ag-horario"></p>
+                <div id="ag-erro" class="modal-erro" hidden></div>
+                <button type="submit" class="btn-modal btn-modal-largo">Agendar Agora!</button>
+            </form>
             <div class="modal-icone-grande">
                 <i class="fa-solid fa-calendar-days"></i>
             </div>
-            <p class="modal-aula-info" id="sv-info"></p>
-            <p class="modal-aula-horario" id="sv-horario"></p>
         </div>
     </div>
+</div>
 
-    <!-- Modal: cancelado -->
-    <div id="modal-cancelado" class="fundo-modal">
-        <div class="caixa-modal modal-status">
-            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </button>
-            <div class="modal-icone-grande">
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <h2 class="modal-status-titulo modal-status-cancelado">CANCELADO!</h2>
+<div id="modal-sem-vagas" class="fundo-modal">
+    <div class="caixa-modal modal-status">
+        <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <h2 class="modal-status-titulo">Sem Vagas!</h2>
+        <div class="modal-icone-grande">
+            <i class="fa-solid fa-calendar-days"></i>
         </div>
+        <p class="modal-aula-info" id="sv-info"></p>
+        <p class="modal-aula-horario" id="sv-horario"></p>
     </div>
+</div>
 
-    <!-- Modal: confirmado -->
-    <div id="modal-confirmado" class="fundo-modal">
-        <div class="caixa-modal modal-status">
-            <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </button>
-            <div class="modal-icone-grande">
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <p class="modal-confirmado-tag">Agendamento Confirmado!</p>
+<div id="modal-cancelado" class="fundo-modal">
+    <div class="caixa-modal modal-status">
+        <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <div class="modal-icone-grande">
+            <i class="fa-solid fa-calendar-days"></i>
         </div>
+        <h2 class="modal-status-titulo modal-status-cancelado">CANCELADO!</h2>
     </div>
+</div>
 
-    <script src="js/shared.js" defer></script>
-    <script src="js/agenda.js" defer></script>
+<div id="modal-confirmado" class="fundo-modal">
+    <div class="caixa-modal modal-status">
+        <button type="button" class="btn-fechar-modal" onclick="fecharModais()" aria-label="Fechar">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <div class="modal-icone-grande">
+            <i class="fa-solid fa-calendar-days"></i>
+        </div>
+        <p class="modal-confirmado-tag">Agendamento Confirmado!</p>
+    </div>
+</div>
+
+<div id="modal-inscritos-aula" class="fundo-modal">
+    <div class="caixa-modal" style="text-align: center; padding: 20px;">
+        <button class="btn-fechar-modal" type="button" onclick="document.getElementById('modal-inscritos-aula').classList.remove('aberto')" style="float: right;">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <h2 style="margin-bottom: 20px; color: #ff5e00;">Alunos Inscritos</h2>
+        <ul id="lista-inscritos-html" style="list-style: none; padding: 0; text-align: left; max-height: 250px; overflow-y: auto;">
+        </ul>
+    </div>
+</div>
+
+<script src="js/shared.js" defer></script>
+<script src="js/agenda.js" defer></script>
 </body>
 </html>

@@ -13,4 +13,6 @@ public interface AcessoRepository extends JpaRepository<Acesso, Long> {
     List<Acesso> findByAlunoId(Long alunoId);
 
     List<Acesso> findByMomentoBetween(LocalDateTime inicio, LocalDateTime fim);
+
+    List<Acesso> findTop10ByOrderByMomentoDesc();
 }

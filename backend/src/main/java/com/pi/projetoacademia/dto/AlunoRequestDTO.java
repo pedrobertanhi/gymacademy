@@ -1,5 +1,7 @@
 package com.pi.projetoacademia.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 
 public record AlunoRequestDTO(
@@ -10,6 +12,8 @@ public record AlunoRequestDTO(
         String genero,
         LocalDate planoInicio,
         LocalDate planoFim,
-        Boolean ativo
+        Boolean ativo,
+        @NotBlank(message = "A senha é obrigatória")
+        String senha
 ) {
 }

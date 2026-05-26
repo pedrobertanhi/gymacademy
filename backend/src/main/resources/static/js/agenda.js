@@ -13,9 +13,15 @@ const modalConfirmado = document.getElementById('modal-confirmado');
 let aulaAtual = null;
 
 function saudacaoAdmin() {
-    const admin = PowerGym.admin();
-    const nome = admin && admin.nome ? admin.nome.split(' ')[0] : 'Admin';
-    elBoasVindas.innerText = `Bem-Vindo, ${nome}!`;
+    const nomeSessao = sessionStorage.getItem("userName");
+    const nome = nomeSessao ? nomeSessao.split(' ')[0] : 'Admin';
+    elBoasVindas.innerText = `Olá, ${nome}!`;
+
+    // Se for Aluno, mostra o botão de Check-in na Recepção
+    const userRole = sessionStorage.getItem("userRole");
+    if(userRole === "ALUNO") {
+        document.getElementById('area-checkin-aluno').style.display = 'block';
+    }
 }
 
 function rotuloStatus(status, agendados, capacidade) {
@@ -43,6 +49,7 @@ function renderCards() {
             </div>
         `).join('');
 
+        // TAREFA 2: INSERÇÃO DO NOVO BOTÃO NO CARTÃO DA AULA
         return `
             <div class="class-card" data-id="${a.id}">
                 <div class="card-header">
@@ -51,8 +58,16 @@ function renderCards() {
                 <div class="card-body">
                     <p class="day">${a.dia}</p>
                     <h2 class="time">${a.horario}</h2>
-                    <button class="btn-agendar ${r.classe}" type="button" onclick="acaoAgendar('${a.id}')">Agendar</button>
-                    <p class="professor">${a.professor}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-agendar ${r.classe}" type="button" onclick="acaoAgendar('${a.id}')">Agendar</button>
+                        
+                        <button class="btn-ver-inscritos" type="button" style="background-color: #333; color: white; border-radius: 4px; padding: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9em;" onclick="verInscritos('${a.id}')">
+                            <i class="fa-solid fa-users"></i> Ver Inscritos
+                        </button>
+                    </div>
+
+                    <p class="professor" style="margin-top: 10px;">${a.professor}</p>
                     <p class="status ${r.classe}">${r.texto}</p>
                     ${r.classe !== 'aberta' ? `<p class="status-data">${dataHoje()}</p>` : ''}
                 </div>
@@ -115,6 +130,8 @@ function renderSugestoes(termo) {
         fecharSugestoes();
         return;
     }
+    // Agora puxa os alunos do SessionStorage ou API se fossemos fazer real.
+    // Para agendamento, o código antigo PowerGym ainda funciona local.
     const lista = PowerGym.alunos()
         .filter(a => a.nome.toLowerCase().includes(t))
         .slice(0, 6);
@@ -148,49 +165,71 @@ function preencherDeAluno(id) {
     fecharSugestoes();
 }
 
-elNome.addEventListener('input', () => renderSugestoes(elNome.value));
-elNome.addEventListener('focus', () => renderSugestoes(elNome.value));
+if(elNome) {
+    elNome.addEventListener('input', () => renderSugestoes(elNome.value));
+    elNome.addEventListener('focus', () => renderSugestoes(elNome.value));
+}
 
-elSugestoes.addEventListener('click', (e) => {
-    const item = e.target.closest('.sugestao-item');
-    if (item) preencherDeAluno(item.dataset.id);
-});
+if(elSugestoes) {
+    elSugestoes.addEventListener('click', (e) => {
+        const item = e.target.closest('.sugestao-item');
+        if (item) preencherDeAluno(item.dataset.id);
+    });
+}
 
 document.addEventListener('click', (e) => {
-    if (!elNome.contains(e.target) && !elSugestoes.contains(e.target)) {
+    if (elNome && !elNome.contains(e.target) && elSugestoes && !elSugestoes.contains(e.target)) {
         fecharSugestoes();
     }
 });
 
-document.getElementById('form-agendar').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nome = document.getElementById('ag-nome').value.trim();
-    const contato = document.getElementById('ag-contato').value.trim();
-    const email = document.getElementById('ag-email').value.trim();
-    const erro = document.getElementById('ag-erro');
+const formAgendar = document.getElementById('form-agendar');
+if(formAgendar) {
+    formAgendar.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    if (!nome || !contato || !email) {
-        erro.textContent = 'Preencha todos os campos.';
-        erro.hidden = false;
-        return;
-    }
-    if (!aulaAtual) return;
+        // Pega os dados de quem está logado!
+        const nomeSessao = sessionStorage.getItem("userName");
 
-    const aulas = PowerGym.aulas();
-    const idx = aulas.findIndex(a => a.id === aulaAtual.id);
-    if (idx === -1) return;
+        // Mantém a leitura dos campos do formulário para caso seja o Admin a marcar por alguém
+        const nomeForm = document.getElementById('ag-nome').value.trim();
+        const contatoForm = document.getElementById('ag-contato').value.trim();
+        const emailForm = document.getElementById('ag-email').value.trim();
+        const erro = document.getElementById('ag-erro');
 
-    aulas[idx].agendados = aulas[idx].agendados || [];
-    aulas[idx].agendados.push({ nome, contato, email, em: Date.now() });
-    if (aulas[idx].agendados.length >= aulas[idx].capacidade) {
-        aulas[idx].status = 'cheia';
-    }
-    PowerGym.setAulas(aulas);
+        // Usa o nome da sessão se for o aluno, ou o do formulário se o aluno tiver preenchido
+        const nomeFinal = nomeSessao || nomeForm;
 
-    fecharModais();
-    abrirModal(modalConfirmado);
-    renderCards();
-});
+        if (!nomeFinal) {
+            erro.textContent = 'Erro ao identificar o aluno.';
+            erro.hidden = false;
+            return;
+        }
+
+        if (!aulaAtual) return;
+        const aulas = PowerGym.aulas();
+        const idx = aulas.findIndex(a => a.id === aulaAtual.id);
+        if (idx === -1) return;
+
+        // Salva no LocalStorage do PowerGym
+        aulas[idx].agendados = aulas[idx].agendados || [];
+        aulas[idx].agendados.push({
+            nome: nomeFinal,
+            contato: contatoForm || 'Não informado',
+            email: emailForm || 'Não informado',
+            em: Date.now()
+        });
+
+        if (aulas[idx].agendados.length >= aulas[idx].capacidade) {
+            aulas[idx].status = 'cheia';
+        }
+        PowerGym.setAulas(aulas);
+
+        fecharModais();
+        abrirModal(modalConfirmado);
+        renderCards();
+    });
+}
 
 function abrirModal(m) {
     fecharModais();
@@ -209,6 +248,74 @@ function fecharModais() {
     });
 });
 
-/* ===== Bootstrap ===== */
+/* ============================================
+   FUNÇÕES NOVAS (CHECK-IN E LISTA DE INSCRITOS)
+   ============================================ */
+
+// TAREFA 1: Check-in Virtual do Aluno
+async function solicitarCheckin() {
+    const userId = sessionStorage.getItem("userId");
+    if (!userId) {
+        alert("Erro: Faça login novamente para identificar o seu cadastro.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8081/api/catraca/solicitar/${userId}`, { method: 'POST' });
+        if (response.ok) {
+            if(typeof mostrarPopupSucesso === 'function') {
+                mostrarPopupSucesso({
+                    titulo: 'Catraca Avisada!',
+                    mensagem: 'Aguarde a recepção liberar sua entrada.',
+                    icone: 'fa-bell'
+                });
+            } else {
+                alert("A recepção foi avisada. Aguarde a liberação da catraca.");
+            }
+        }
+    } catch (error) {
+        console.error("Erro no check-in:", error);
+    }
+}
+
+// TAREFA 2: Ver a lista de Inscritos da Aula
+async function verInscritos(aulaId) {
+    const userRole = sessionStorage.getItem("userRole");
+
+    // Bloqueia se for Aluno
+    if (userRole !== "ADMIN") {
+        alert("Acesso Negado: Apenas os administradores podem visualizar a lista de alunos inscritos.");
+        return;
+    }
+
+    try {
+        // Puxa a lista diretamente do LocalStorage (onde o Agendamento está a ser salvo)
+        let inscritos = [];
+        const aulaLocal = PowerGym.aulas().find(a => a.id === aulaId);
+
+        if(aulaLocal && aulaLocal.agendados) {
+            // Se o objeto tiver { nome: 'Pedro' }, pega o nome. Se for só string 'placeholder_0', pega a string.
+            inscritos = aulaLocal.agendados.map(ag => typeof ag === 'object' ? ag.nome : ag);
+        }
+
+        const ulHtml = document.getElementById('lista-inscritos-html');
+        if(!ulHtml) return;
+
+        ulHtml.innerHTML = inscritos.length === 0
+            ? '<li style="text-align: center; color: #999;">Nenhum aluno agendou esta aula.</li>'
+            : inscritos.map(nome =>
+                `<li style="padding: 10px; border-bottom: 1px solid #eee;">
+                    <i class="fa-solid fa-user" style="color: #666; margin-right: 10px;"></i> ${nome}
+                </li>`
+            ).join('');
+
+        document.getElementById('modal-inscritos-aula').classList.add('aberto');
+
+    } catch (error) {
+        console.error("Erro ao mostrar inscritos:", error);
+    }
+}
+
+/* ===== Inicialização ===== */
 saudacaoAdmin();
 renderCards();

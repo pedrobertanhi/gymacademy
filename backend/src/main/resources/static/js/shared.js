@@ -1,4 +1,50 @@
 /* ============================================
+   CONTROLE DE ACESSO E SIDEBAR (RBAC)
+   Adicionado para proteger rotas e ocultar menus
+   ============================================ */
+document.addEventListener("DOMContentLoaded", () => {
+    const userRole = sessionStorage.getItem("userRole");
+
+    // 1. PROTEÇÃO DE TELA: Se não houver usuário logado e a página não for de login ou cadastro, redireciona
+    const paginasPublicas = ['login.html', 'cadastro.html', 'index.html', 'redefinir-senha.html'];
+    const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+
+    if (!userRole && !paginasPublicas.includes(paginaAtual)) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    // 2. CONTROLE DA SIDEBAR: Regras para o perfil ALUNO
+    if (userRole === "ALUNO") {
+        // Se o aluno tentar acessar páginas restritas a Administradores
+        const paginasRestritas = ['home.html', 'cadastro-alunos.html', 'lista-alunos.html'];
+        if (paginasRestritas.includes(paginaAtual)) {
+            window.location.href = "agenda.html";
+            return;
+        }
+
+        // Esconde os links do menu que pertencem ao Administrador
+        const linksOcultar = [
+            'a[href="home.html"]',
+            'a[href="cadastro-alunos.html"]',
+            'a[href="lista-alunos.html"]',
+            'a[href="controle-acesso.html"]' // Se houver
+        ];
+
+        linksOcultar.forEach(seletor => {
+            const link = document.querySelector(seletor);
+            if (link) {
+                const li = link.closest('li');
+                if (li) {
+                    li.style.display = 'none';
+                }
+            }
+        });
+    }
+});
+
+
+/* ============================================
    SHARED — localStorage, dados-semente, modal sair
    Importado por TODAS as páginas
    ============================================ */
@@ -171,6 +217,10 @@ function fecharModalSair() {
 }
 
 function confirmarSair() {
+    // Quando confirmar a saída, é crucial limpar o sessionStorage!
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("userRole");
+    sessionStorage.removeItem("userToken");
     window.location.href = 'login.html';
 }
 

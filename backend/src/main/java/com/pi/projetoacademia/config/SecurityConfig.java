@@ -1,5 +1,6 @@
 package com.pi.projetoacademia.config;
 
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,18 +16,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // Modo DEV: tudo liberado para destravar o trabalho dos colaboradores.
-        // TODO produção: restringir /api/** com autenticação real (JWT) e habilitar CSRF onde fizer sentido.
         http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                // LINHA ADICIONADA: Permite a renderização de Iframes (Exigência do painel H2)
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 
         return http.build();
+    }
+
+    // A MÁGICA ESTÁ AQUI: Usando o "JakartaWebServlet" compatível com o seu Java novo!
+    @Bean
+    public ServletRegistrationBean<jakarta.servlet.Servlet> h2servletRegistration() {
+        ServletRegistrationBean<jakarta.servlet.Servlet> registrationBean =
+                new ServletRegistrationBean<>(new org.h2.server.web.JakartaWebServlet());
+        registrationBean.addUrlMappings("/h2-console/*");
+        return registrationBean;
     }
 
     @Bean

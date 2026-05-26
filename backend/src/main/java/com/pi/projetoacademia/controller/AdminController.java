@@ -1,7 +1,6 @@
 package com.pi.projetoacademia.controller;
 
 import com.pi.projetoacademia.dto.AdminRequestDTO;
-import com.pi.projetoacademia.dto.LoginRequestDTO;
 import com.pi.projetoacademia.dto.LoginResponseDTO;
 import com.pi.projetoacademia.service.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +15,6 @@ import java.util.Map;
 public class AdminController {
 
     private final AdminService adminService;
-
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO body) {
-        return ResponseEntity.ok(adminService.autenticar(body));
-    }
 
     @PostMapping
     public ResponseEntity<LoginResponseDTO> cadastrar(@RequestBody AdminRequestDTO body) {
