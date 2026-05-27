@@ -47,15 +47,24 @@
 
             <div id="area-checkin-aluno" style="margin-top: 15px; display: none;">
                 <button type="button" class="btn-salvar" onclick="solicitarCheckin()" style="background-color: #ff5e00; width: auto; padding: 10px 20px; font-weight: bold;">
-                    <i class="fa-solid fa-location-dot"></i> Fazer Check-in na Catraca
+                    <i class="fa-solid fa-location-dot"></i> Fazer Check-in na Recepção
                 </button>
             </div>
         </header>
 
-        <section class="agenda-section">
-            <div class="cards-container" id="lista-aulas">
-            </div>
-        </section>
+        <div class="area-conteudo">
+            <section id="secao-meus-agendamentos" style="display: none; margin-bottom: 30px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <h2 style="margin-bottom: 15px; color: #ff5e00;"><i class="fa-solid fa-bookmark"></i> Minhas Aulas Agendadas</h2>
+                <div id="lista-meus-agendamentos" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;">
+                </div>
+            </section>
+
+            <section class="agenda-section">
+                <h2 style="margin-bottom: 20px;"><i class="fa-solid fa-list"></i> Grade de Aulas</h2>
+                <div class="cards-container" id="lista-aulas">
+                </div>
+            </section>
+        </div>
 
     </main>
 </div>

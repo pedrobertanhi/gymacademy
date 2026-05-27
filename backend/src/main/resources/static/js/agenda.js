@@ -1,5 +1,5 @@
 /* ============================================
-   AGENDA — cards, modais, próximas aulas
+   AGENDA — cards, modais, próximas aulas, meus agendamentos
    ============================================ */
 
 const elBoasVindas = document.getElementById('boas-vindas');
@@ -17,11 +17,47 @@ function saudacaoAdmin() {
     const nome = nomeSessao ? nomeSessao.split(' ')[0] : 'Admin';
     elBoasVindas.innerText = `Olá, ${nome}!`;
 
-    // Se for Aluno, mostra o botão de Check-in na Recepção
+    // Se for Aluno, mostra o botão de Check-in e o painel de Meus Agendamentos
     const userRole = sessionStorage.getItem("userRole");
     if(userRole === "ALUNO") {
         document.getElementById('area-checkin-aluno').style.display = 'block';
+
+        const secMeusAgendamentos = document.getElementById('secao-meus-agendamentos');
+        if(secMeusAgendamentos) secMeusAgendamentos.style.display = 'block';
+
+        renderMeusAgendamentos();
     }
+}
+
+// NOVA FUNÇÃO: Renderiza os lembretes de aula do Aluno no topo da tela
+function renderMeusAgendamentos() {
+    const userName = sessionStorage.getItem("userName");
+    const container = document.getElementById('lista-meus-agendamentos');
+    if(!container || !userName) return;
+
+    const aulas = PowerGym.aulas();
+    // Filtra as aulas onde o nome deste aluno logado aparece na lista de agendados
+    const minhasAulas = aulas.filter(aula => {
+        if(!aula.agendados) return false;
+        return aula.agendados.some(ag => {
+            const nomeAgendado = typeof ag === 'object' ? ag.nome : ag;
+            return nomeAgendado === userName;
+        });
+    });
+
+    if(minhasAulas.length === 0) {
+        container.innerHTML = '<p style="color: #666; font-style: italic;">Você ainda não agendou nenhuma aula. Escolha uma abaixo!</p>';
+        return;
+    }
+
+    // Desenha os cartões pequenos
+    container.innerHTML = minhasAulas.map(a => `
+        <div style="min-width: 220px; border: 1px solid #eee; border-left: 4px solid #ff5e00; border-radius: 6px; padding: 15px; background: #fafafa;">
+            <h4 style="margin: 0 0 8px 0; color: #333;">${a.nome}</h4>
+            <p style="margin: 0 0 5px 0; font-size: 0.9em; color: #555;"><i class="fa-regular fa-calendar" style="color: #ff5e00;"></i> ${a.dia}</p>
+            <p style="margin: 0; font-size: 0.9em; color: #555;"><i class="fa-regular fa-clock" style="color: #ff5e00;"></i> ${a.horario}</p>
+        </div>
+    `).join('');
 }
 
 function rotuloStatus(status, agendados, capacidade) {
@@ -49,7 +85,6 @@ function renderCards() {
             </div>
         `).join('');
 
-        // TAREFA 2: INSERÇÃO DO NOVO BOTÃO NO CARTÃO DA AULA
         return `
             <div class="class-card" data-id="${a.id}">
                 <div class="card-header">
@@ -118,7 +153,6 @@ function acaoAgendar(id) {
 }
 
 /* ===== Autocomplete: ao digitar nome, sugere alunos cadastrados ===== */
-
 const elNome = document.getElementById('ag-nome');
 const elContato = document.getElementById('ag-contato');
 const elEmail = document.getElementById('ag-email');
@@ -130,8 +164,6 @@ function renderSugestoes(termo) {
         fecharSugestoes();
         return;
     }
-    // Agora puxa os alunos do SessionStorage ou API se fossemos fazer real.
-    // Para agendamento, o código antigo PowerGym ainda funciona local.
     const lista = PowerGym.alunos()
         .filter(a => a.nome.toLowerCase().includes(t))
         .slice(0, 6);
@@ -188,16 +220,12 @@ if(formAgendar) {
     formAgendar.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Pega os dados de quem está logado!
         const nomeSessao = sessionStorage.getItem("userName");
-
-        // Mantém a leitura dos campos do formulário para caso seja o Admin a marcar por alguém
         const nomeForm = document.getElementById('ag-nome').value.trim();
         const contatoForm = document.getElementById('ag-contato').value.trim();
         const emailForm = document.getElementById('ag-email').value.trim();
         const erro = document.getElementById('ag-erro');
 
-        // Usa o nome da sessão se for o aluno, ou o do formulário se o aluno tiver preenchido
         const nomeFinal = nomeSessao || nomeForm;
 
         if (!nomeFinal) {
@@ -211,7 +239,6 @@ if(formAgendar) {
         const idx = aulas.findIndex(a => a.id === aulaAtual.id);
         if (idx === -1) return;
 
-        // Salva no LocalStorage do PowerGym
         aulas[idx].agendados = aulas[idx].agendados || [];
         aulas[idx].agendados.push({
             nome: nomeFinal,
@@ -228,6 +255,11 @@ if(formAgendar) {
         fecharModais();
         abrirModal(modalConfirmado);
         renderCards();
+
+        // Atualiza os cartõezinhos do topo instantaneamente após marcar
+        if(sessionStorage.getItem("userRole") === "ALUNO") {
+            renderMeusAgendamentos();
+        }
     });
 }
 
@@ -249,10 +281,9 @@ function fecharModais() {
 });
 
 /* ============================================
-   FUNÇÕES NOVAS (CHECK-IN E LISTA DE INSCRITOS)
+   FUNÇÕES DE CHECK-IN E LISTA DE INSCRITOS
    ============================================ */
 
-// TAREFA 1: Check-in Virtual do Aluno
 async function solicitarCheckin() {
     const userId = sessionStorage.getItem("userId");
     if (!userId) {
@@ -278,23 +309,19 @@ async function solicitarCheckin() {
     }
 }
 
-// TAREFA 2: Ver a lista de Inscritos da Aula
 async function verInscritos(aulaId) {
     const userRole = sessionStorage.getItem("userRole");
 
-    // Bloqueia se for Aluno
     if (userRole !== "ADMIN") {
         alert("Acesso Negado: Apenas os administradores podem visualizar a lista de alunos inscritos.");
         return;
     }
 
     try {
-        // Puxa a lista diretamente do LocalStorage (onde o Agendamento está a ser salvo)
         let inscritos = [];
         const aulaLocal = PowerGym.aulas().find(a => a.id === aulaId);
 
         if(aulaLocal && aulaLocal.agendados) {
-            // Se o objeto tiver { nome: 'Pedro' }, pega o nome. Se for só string 'placeholder_0', pega a string.
             inscritos = aulaLocal.agendados.map(ag => typeof ag === 'object' ? ag.nome : ag);
         }
 
