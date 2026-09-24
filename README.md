@@ -9,6 +9,9 @@
 ![H2](https://img.shields.io/badge/H2-Database-09476B)
 ![Status](https://img.shields.io/badge/status-em_desenvolvimento-F59E0B)
 
+<img width="1896" height="830" alt="image" src="https://github.com/user-attachments/assets/6df59a93-124d-4b44-b98f-804d3f77ca04" />
+
+
 </div>
 
 ## Sobre o projeto
